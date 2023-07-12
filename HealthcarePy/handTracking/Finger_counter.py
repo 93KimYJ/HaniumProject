@@ -1,8 +1,17 @@
 import cv2
 import mediapipe as mp
+import time
+import ApiMapping
+import requests
+import json
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
+
+killSwitch = 0
+beforeCnt = -1
+startTime = time.time()
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
@@ -48,13 +57,14 @@ with mp_hands.Hands(
         #   considered raised.
         # Thumb: TIP x position must be greater or lower than IP x position, 
         #   deppeding on hand label.
-        # 각 손가락 포인트값의 상대 위치로 손가락 자세를 감지하는 듯 하다
+        # 각 손가락 포인트값의 상대 위치로 펼친 손가락 개수 반환
         # 
-        # 그리하여 엄지손가락의 
+        # 배열의 앞자리는 손관절 번호, 뒷자리는 0일경우 가로, 1일경우 세로
 
         # 엄지손가락 감지 : 부정확도 큼, 초기값 4, 3
         
         # if handLabel == "Left" and handLandmarks[4][0] > handLandmarks[3][0]:
+        #   #print(handLandmarks[4][0],":",handLandmarks[3][0])
         #   fingerCount = fingerCount+1
         # elif handLabel == "Right" and handLandmarks[4][0] < handLandmarks[3][0]:
         #   fingerCount = fingerCount+1
@@ -78,6 +88,38 @@ with mp_hands.Hands(
             mp_hands.HAND_CONNECTIONS,
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
+
+
+    # n초 이상이면 작동하게 하는 로직
+    if (killSwitch == 0 and fingerCount != beforeCnt):
+      print("@")
+      beforeCnt = fingerCount
+      killSwitch = 1
+      startTime = time.time()
+    
+    if (fingerCount != beforeCnt):
+      killSwitch = 0
+
+    endTime = time.time()
+
+    #print(fingerCount,":",beforeCnt)
+    timeCnt = endTime - startTime
+    print(f"{timeCnt:.5f} sec")
+    if (timeCnt > 1.5 and fingerCount in [1, 2]):
+      user_data = {
+          'cnt': fingerCount,
+      }
+
+      url = ApiMapping.mappingData.get("fingerCnt")
+      headers = {'Content-Type': 'application/json'}
+      response = requests.post(url, data=json.dumps(user_data), headers=headers)
+
+      if response.status_code == 200:
+          # 요청 성공
+          print('데이터 전송 성공') # 컨트롤러 부분만 손보면 됨(아마)
+      else:
+          # 요청 실패
+          print('데이터 전송 실패')
 
     # Display finger count
     cv2.putText(image, str(fingerCount), (50, 450), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 10)

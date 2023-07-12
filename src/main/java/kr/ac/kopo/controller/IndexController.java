@@ -40,6 +40,10 @@ public class IndexController {
 		return "Index";
 	}
 	
-	
+	@RequestMapping("/fingerCounterPy")
+	public String fingerCount(@RequestBody ExerciseVO apiVo, Model model) {
+		
+		return "Index";
+	}
 	
 }

@@ -53,6 +53,7 @@ public class ApiController {
 		apiMapping.put("login", host+"/pyLogin?");
 		apiMapping.put("dumbbellEnd", host+"/exercisePy?");
 		apiMapping.put("pushupEnd", host+"/exercisePy?");
+		apiMapping.put("fingerCnt", host+"/fingerCounterPy");
 		
 		return apiMapping;
 	}
