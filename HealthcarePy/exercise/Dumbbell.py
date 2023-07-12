@@ -3,6 +3,8 @@ import mediapipe as mp
 import numpy as np
 import requests
 import json
+import ApiMapping
+
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
@@ -96,6 +98,7 @@ def start():
                                     mp_drawing.DrawingSpec(color=(245,66,230), thickness=1, circle_radius=2) 
                                     )               
             
+            # cv2.flip(image, 1)
             cv2.imshow('Mediapipe Feed', image)
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -105,7 +108,7 @@ def start():
                     'cnt': counter,
                 }
 
-                url = 'http://localhost:8080/exercisePy?'
+                url = ApiMapping.mappingData.get("dumbbellEnd")
                 headers = {'Content-Type': 'application/json'}
                 response = requests.post(url, data=json.dumps(user_data), headers=headers)
 

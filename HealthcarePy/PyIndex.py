@@ -1,6 +1,9 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+from exercise import Dumbbell
+from exercise import PushUp
+
 
 
 
@@ -38,13 +41,11 @@ class WindowClass2(QDialog, form_class) :
     .
     '''
     def startDumbbelFuc(self):
-        from exercise import Dumbbell
         Dumbbell.start()
 
     def startPushUpFuc(self):
-        from exercise import PushUp
+        PushUp.start()
     
-
 if __name__ == "__main__" :
     app = QApplication(sys.argv) 
     myWindow = WindowClass2() 

@@ -4,6 +4,7 @@ from PyQt5 import uic
 from PyIndex import WindowClass2
 import requests
 import json
+import ApiMapping
 
 # UI파일 연결
 form_class = uic.loadUiType("login.ui")[0]
@@ -14,29 +15,8 @@ class WindowClass(QDialog, form_class) :
         super().__init__()
         self.setupUi(self)
 
-		# 위젯 시그널 입력
-        ''' ex)
-        self.Qt_Designer에서_정한_objectName값.clicked.connect(self.작동시킬함수)
-        self.Qt_Designer에서_정한_objectName값2.clicked.connect(self.작동시킬함수2)
-        .
-        .
-        .
-        '''
         self.loginBtn.clicked.connect(self.executeLogin)
 
-	# 작동시킬 함수들 작성
-    ''' ex)
-    def 작동시킬함수(self):
-    	print("함수작동")
-        self.출력할위젯objectName값.setText(str(1))
-     
-    def 작동시킬함수2(self):
-    	print("2함수작동")
-        self.출력할위젯objectName값.setText(str(2))
-    .
-    .
-    .
-    '''
     def executeLogin(self):
 
         id = self.idInput.toPlainText()
@@ -47,7 +27,7 @@ class WindowClass(QDialog, form_class) :
             'password' : password
         }
 
-        url = 'http://localhost:8080/pyLogin?'
+        url = ApiMapping.mappingData.get("login")
         headers = {'Content-Type': 'application/json'}
         response = requests.post(url, data=json.dumps(loginData), headers=headers)
 

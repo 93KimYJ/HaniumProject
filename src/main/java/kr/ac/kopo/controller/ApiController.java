@@ -1,7 +1,9 @@
 package kr.ac.kopo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,19 @@ public class ApiController {
 		return li;
 	}
 	
+	@RequestMapping("/pyAppMapping")
+	public Map<String, String> webIp() {
+		
+		Map<String, String> apiMapping = new HashMap<String, String>();
+		String host = "http://localhost:8080";
+		
+		apiMapping.put("login", host+"/pyLogin?");
+		apiMapping.put("dumbbellEnd", host+"/exercisePy?");
+		apiMapping.put("pushupEnd", host+"/exercisePy?");
+		
+		return apiMapping;
+	}
+	
 	@RequestMapping("/pyLogin")
 	public ResponseEntity<UserVO> pyLogin(@RequestBody UserVO vo) {
 		
@@ -61,3 +76,7 @@ public class ApiController {
 	}
 	
 }
+
+
+
+
