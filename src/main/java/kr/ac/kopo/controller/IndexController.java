@@ -22,26 +22,24 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
-		
 		List<ExerciseVO> evoList = dao.getExerciseData("idid");
 		
 		model.addAttribute("exList" , evoList);
 		System.out.println("IndexController:"+evoList);
 		
-		return "Index";
+		return "MainPage";
+	}
+	
+	@RequestMapping("/mainPage")
+	public String mainPage(Model model) {
+		
+		return "MainPage";
 	}
 	
 	@RequestMapping("/exercisePy")
 	public String getDataTest(@RequestBody ExerciseVO apiVo, Model model) {
 		System.out.println("IndexController: " + apiVo);
-    
 		dao.insertExerciseData(apiVo);
-		
-		return "Index";
-	}
-	
-	@RequestMapping("/fingerCounterPy")
-	public String fingerCount(@RequestBody ExerciseVO apiVo, Model model) {
 		
 		return "Index";
 	}

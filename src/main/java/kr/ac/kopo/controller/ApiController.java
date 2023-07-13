@@ -7,21 +7,17 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.kopo.dao.UserDAO;
+import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
 
 @RestController
 public class ApiController {
-	
-//	@Autowired
-//	private NewsDAO dao;
-//	
-//	@Autowired
-//	private NewsVO vo;
 	
 	@Autowired
 	private UserDAO dao;
@@ -74,6 +70,13 @@ public class ApiController {
 		System.out.println(reVo);
 		
 		return ResponseEntity.ok(reVo);
+	}
+	
+	@RequestMapping("/fingerCounterPy")
+	public String fingerCount(@RequestBody ExerciseVO vo, Model model) {
+		System.out.println("fingerCount: " + vo.getCnt());
+		
+		return "Index";
 	}
 	
 }

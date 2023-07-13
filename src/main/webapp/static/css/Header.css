@@ -1,0 +1,119 @@
+html,
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.headerbody {
+  margin-top: -8px;
+  width: 100%;
+}
+
+.headercontainer {
+  background-color: rgba(137, 108, 233);
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.headerlogo {
+  width: 60px;
+  margin-left: 20px;
+}
+
+.headertitle {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  margin-left: 10px;
+}
+
+.headerright {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.headersignin {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.headersignup {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin-right: 30px;
+}
+
+input[id="headermenuicon"] {
+  display: none;
+}
+
+input[id="headermenuicon"] + label {
+  display: block;
+  width: 60px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+}
+
+input[id="headermenuicon"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 7px;
+  border-radius: 30px;
+  background-color: white;
+  transition: all 0.35s;
+}
+
+input[id="headermenuicon"] + label span:nth-child(1) {
+  top: 0;
+}
+
+input[id="headermenuicon"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[id="headermenuicon"] + label span:nth-child(3) {
+  bottom: 0;
+}
+
+input[id="headermenuicon"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+input[id="headermenuicon"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+
+input[id="headermenuicon"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+.headermenu {
+  position: fixed;
+  top: 100px;
+  right: -350px; /* 수정: 시작 위치 설정 */
+  width: 350px;
+  z-index: 1;
+  transition: all 0.35s;
+  height: 100%;
+  background-color: rgba(137, 108, 233);
+  color: white;
+  font-size: 25px;
+}
+input[id="headermenuicon"]:checked + label + div[class="headermenu"] {
+  right: 0;
+}
+
+.headermenu ul li {
+  list-style-type: none;
+}

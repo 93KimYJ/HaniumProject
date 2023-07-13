@@ -21,12 +21,12 @@ def calculate_angle(a,b,c):
         
     return angle 
 
-cap = cv2.VideoCapture(0)
 
 # Curl counter variables
 
 ## Setup mediapipe instance
 def start():
+    cap = cv2.VideoCapture(0)
     counter = 0 
     stage = None
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
@@ -101,7 +101,13 @@ def start():
             # cv2.flip(image, 1)
             cv2.imshow('Mediapipe Feed', image)
 
-            if cv2.waitKey(10) & 0xFF == ord('q'):
+            # 동작으로 종료
+            leftHand = landmarks[mp_pose.PoseLandmark.RIGHT_INDEX.value].x
+            rightHand = landmarks[mp_pose.PoseLandmark.LEFT_INDEX.value].x
+
+            #print(leftHand, ":", rightHand)
+
+            if cv2.waitKey(10) & 0xFF == ord('q') or leftHand > rightHand:
                 user_data = {
                     'userId': 'idid',
                     'type' : 'dumbbel',
