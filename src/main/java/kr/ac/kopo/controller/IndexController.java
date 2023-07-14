@@ -27,13 +27,19 @@ public class IndexController {
 		model.addAttribute("exList" , evoList);
 		System.out.println("IndexController:"+evoList);
 		
-		return "MainPage";
+		return "Index";
 	}
 	
-	@RequestMapping("/mainPage")
-	public String mainPage(Model model) {
+	@RequestMapping("/toLogin")
+	public String toLogin(Model model) {
 		
-		return "MainPage";
+		return "account/SingIn";
+	}
+	
+	@RequestMapping("/toSingUp")
+	public String toSingUp(Model model) {
+		
+		return "account/SingUp";
 	}
 	
 	@RequestMapping("/exercisePy")

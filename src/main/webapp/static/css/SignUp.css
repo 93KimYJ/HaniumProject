@@ -1,0 +1,127 @@
+.signupform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signupmenu {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.signuplabel {
+  width: 250px;
+  margin-right: 10px;
+  background-color: beige;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.signupmenu input {
+  margin-right: 10px;
+}
+
+table {
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+.namebox,
+.idbox,
+.pwbox,
+.pwbox2,
+.birth,
+.phonebox,
+.emailbox1,
+.emailbox2,
+#sample6_postcode,
+#sample6_address,
+#sample6_detailAddress,
+#sample6_extraAddress {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.birth {
+	width: 172px;
+	font-size: 15px;
+}
+
+.emailbox3 {
+  height: 34px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-right: 10px;
+}
+
+.emailbox2 {
+  margin-left: 10px;
+}
+
+.adressbox {
+  margin-left: 260px;
+}
+
+#sample6_address {
+  margin-top: 30px;
+  width: 500px;
+}
+
+#sample6_detailAddress {
+  margin-top: 10px;
+}
+
+#sample6_detailAddress,
+#sample6_extraAddress {
+  width: 240px;
+}
+
+input[type="button"]:not(.signupbutton1, .signupbutton2 .loginbutton) {
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(121, 136, 223);
+  color: white;
+  font-size: 15px;
+}
+
+.buttoncontainer {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.signupbutton1 {
+  background-color: gray;
+  color: white;
+  font-size: 20px;
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+}
+
+.signupbutton2 {
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(121, 136, 223);
+  color: white;
+  font-size: 20px;
+  margin-left: 30px;
+}

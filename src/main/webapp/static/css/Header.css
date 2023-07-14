@@ -117,3 +117,7 @@ input[id="headermenuicon"]:checked + label + div[class="headermenu"] {
 .headermenu ul li {
   list-style-type: none;
 }
+
+a {
+	text-decoration: none;
+}
