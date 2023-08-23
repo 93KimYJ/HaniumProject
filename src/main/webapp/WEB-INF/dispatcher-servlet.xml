@@ -47,7 +47,7 @@
     </bean>
     
     <bean id="exerciseMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
-    	<property name="mapperInterface" value="kr.ac.kopo.dao.exerciseMapper" />
+    	<property name="mapperInterface" value="kr.ac.kopo.dao.ExerciseMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
     

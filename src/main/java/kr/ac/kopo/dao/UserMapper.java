@@ -8,7 +8,9 @@ import kr.ac.kopo.vo.UserVO;
 @Mapper
 public interface UserMapper {
 
-
 	@Select("SELECT EMAIL FROM HC_USER WHERE USER_ID = #{id}")
 	UserVO getUserEmailwithId(String id);
+	
+	@Select("SELECT * FROM HC_USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}")
+	UserVO userCheck(UserVO vo);
 }

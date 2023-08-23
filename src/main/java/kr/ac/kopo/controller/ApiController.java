@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.kopo.dao.ExerciseDAO;
+import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserDAO;
+import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
 
@@ -26,12 +28,15 @@ public class ApiController {
 	@Autowired
 	private ExerciseDAO edao;
 	
-//	@RequestMapping("/newsApi")
-//	public ResponseEntity<null> newsViewApi() {
-//		
-//		
-//		return ResponseEntity.ok(null);
-//	}
+	private final ExerciseMapper exerciseMapper;
+	private final UserMapper userMapper;
+	@Autowired
+	ApiController(ExerciseMapper exerciseMapper, UserMapper userMapper) {
+		this.userMapper = userMapper;
+		this.exerciseMapper = exerciseMapper;
+	}
+	
+
 	
 	@RequestMapping("/testApi")
 	public List<String> testListApi() {
@@ -66,11 +71,12 @@ public class ApiController {
 		System.out.println(vo.getUserId() + " : "  + vo.getPassword());
 		
 		UserVO reVo = new UserVO();
-		
-		Object logResult = dao.userCheck(vo);
+		System.out.println(reVo);
+
+		UserVO logResult = userMapper.userCheck(vo);
 		
 		if(logResult != null) {
-			reVo = (UserVO)logResult;
+			reVo = logResult;
 		}
 		
 		System.out.println(reVo);
@@ -88,7 +94,7 @@ public class ApiController {
 	@RequestMapping("/exercisePy")
 	public String getDataTest(@RequestBody ExerciseVO apiVo, Model model) {
 		System.out.println("IndexController: " + apiVo);
-		edao.insertExerciseData(apiVo);
+		exerciseMapper.insertExerciseData(apiVo);
 		
 		return "Index";
 	}

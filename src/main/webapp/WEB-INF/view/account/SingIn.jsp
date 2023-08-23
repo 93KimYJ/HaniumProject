@@ -11,7 +11,7 @@
 	<div class="signinbody">
 		<div class="signincontainer">
 		<h1>User Login</h1>
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath}/executeLogin" method="post">
 	            <div class="signinbox">
 	        	    <input type="text" placeholder="  아이디" name="id" class="idbox">
 	        	    <br>
@@ -19,8 +19,8 @@
 	            </div>
 	        	<br>
 	            <div class="signinbuttonbox">
-	        	    <input type="submit" value="뒤로가기" class="signinbutton">
-	        	    <input type="button" value="로그인" class="backbutton">
+	        	    <input type="button" value="뒤로가기" class="signinbutton">
+	        	    <input type="submit" value="로그인" class="backbutton">
 	            </div>
 	            <hr>
 	            <div class="othersigninbuttonbox">
