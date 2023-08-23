@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.ac.kopo.dao.ExerciseDAO;
 import kr.ac.kopo.dao.UserDAO;
 import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
@@ -21,6 +22,9 @@ public class ApiController {
 	
 	@Autowired
 	private UserDAO dao;
+	
+	@Autowired
+	private ExerciseDAO edao;
 	
 //	@RequestMapping("/newsApi")
 //	public ResponseEntity<null> newsViewApi() {
@@ -44,7 +48,8 @@ public class ApiController {
 	public Map<String, String> webIp() {
 		
 		Map<String, String> apiMapping = new HashMap<String, String>();
-		String host = "http://localhost:8080";
+
+		String host = "http://localhost:8088";
 		
 		apiMapping.put("login", host+"/pyLogin?");
 		apiMapping.put("dumbbellEnd", host+"/exercisePy?");
@@ -52,7 +57,8 @@ public class ApiController {
 		apiMapping.put("fingerCnt", host+"/fingerCounterPy");
 		
 		return apiMapping;
-	}
+
+	}        
 	
 	@RequestMapping("/pyLogin")
 	public ResponseEntity<UserVO> pyLogin(@RequestBody UserVO vo) {
@@ -79,6 +85,14 @@ public class ApiController {
 		return "Index";
 	}
 	
+	@RequestMapping("/exercisePy")
+	public String getDataTest(@RequestBody ExerciseVO apiVo, Model model) {
+		System.out.println("IndexController: " + apiVo);
+		edao.insertExerciseData(apiVo);
+		
+		return "Index";
+	}
+
 }
 
 

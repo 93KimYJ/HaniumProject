@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.kopo.dao.ExerciseDAO;
+import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.vo.ExerciseVO;
+import kr.ac.kopo.vo.UserVO;
 
 @Controller
 public class IndexController {
@@ -20,12 +22,20 @@ public class IndexController {
 	@Autowired
 	private ExerciseDAO dao;
 	
+	private final UserMapper userMapper;
+	@Autowired
+    public IndexController(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		List<ExerciseVO> evoList = dao.getExerciseData("idid");
 		
 		model.addAttribute("exList" , evoList);
 		System.out.println("IndexController:"+evoList);
+		UserVO vo = userMapper.getUserEmailwithId("idid");
+		System.out.println(vo);
 		
 		return "Index";
 	}
@@ -40,14 +50,6 @@ public class IndexController {
 	public String toSingUp(Model model) {
 		
 		return "account/SingUp";
-	}
-	
-	@RequestMapping("/exercisePy")
-	public String getDataTest(@RequestBody ExerciseVO apiVo, Model model) {
-		System.out.println("IndexController: " + apiVo);
-		dao.insertExerciseData(apiVo);
-		
-		return "Index";
 	}
 	
 }

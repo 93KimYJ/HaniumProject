@@ -22,22 +22,34 @@
 	</bean>
 
 	<!-- DAO -->
-	
-<!--     <bean id="boardDAO" class="kr.ac.kopo.dao.BoardDAO" /> -->
-<!-- 	<bean id="newsDAO" class="kr.ac.kopo.dao.NewsDAO" /> -->
  	<bean id="exerciseDAO" class="kr.ac.kopo.dao.ExerciseDAO" />
  	<bean id="exerciseVO" class="kr.ac.kopo.vo.ExerciseVO" />
  	
  	<bean id="userDAO" class="kr.ac.kopo.dao.UserDAO" />
  	<bean id="userVO" class="kr.ac.kopo.vo.UserVO" />
-
-   	<!-- Controller -->
-   	
-<!--     <bean id="/index" class="kr.ac.kopo.controller.IndexController"> -->
-<!-- 			<constructor-arg ref="boardDAO"/>  --> 
-<!--     </bean> -->
     
-    <!-- View Resolver  -->
+    <!-- SqlSessionFactory 빈 등록 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:mapper/*.xml" />
+        <property name="configuration">
+	        <bean class="org.apache.ibatis.session.Configuration">
+	            <!-- underscore to camel case 매핑 활성화 -->
+	            <property name="mapUnderscoreToCamelCase" value="true"/>
+	        </bean>
+   		</property>
+    </bean>
+
+    <!-- sqlMapper 빈 등록 -->
+    <bean id="userMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="kr.ac.kopo.dao.UserMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+    <bean id="exerciseMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    	<property name="mapperInterface" value="kr.ac.kopo.dao.exerciseMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
     
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="prefix" value="/WEB-INF/view/"/>
