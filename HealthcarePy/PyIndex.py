@@ -4,12 +4,12 @@ from PyQt5 import uic
 from exercise import Dumbbell
 from exercise import PushUp
 from handTracking import Finger_counter
-
+from PyQt5.QtGui import QPixmap
 
 
 
 # UI파일 연결
-form_class = uic.loadUiType("untitled.ui")[0]
+form_class = uic.loadUiType("MainMenu.ui")[0]
 
 naxtPageFlag = 0
 
@@ -19,11 +19,12 @@ class WindowClass2(QDialog, form_class) :
         super().__init__()
         self.setupUi(self)
 
-        self.fingerCountDef()
+        #self.fingerCountDef()
 
         self.fingerCount.clicked.connect(self.fingerCountDef)
         self.startDumbbelBtn.clicked.connect(self.startDumbbelWithFinger)
         #self.pushUpBtn.clicked.connect(self.startPushUpFuc)
+
 
 	# 작동시킬 함수들 작성
     ''' ex)

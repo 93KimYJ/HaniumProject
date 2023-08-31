@@ -15,12 +15,14 @@ class WindowClass(QDialog, form_class) :
         super().__init__()
         self.setupUi(self)
 
+        # 시그널
         self.loginBtn.clicked.connect(self.executeLogin)
 
+    # 행동
     def executeLogin(self):
 
-        id = self.idInput.toPlainText()
-        password = self.passwordInput.toPlainText()
+        id = self.idInput.text()
+        password = self.passwordInput.text()
 
         loginData = {
             'userId' : id,

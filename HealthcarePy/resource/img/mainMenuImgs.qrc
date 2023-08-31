@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>test-driven-data.jpg</file>
+  </qresource>
+</RCC>
