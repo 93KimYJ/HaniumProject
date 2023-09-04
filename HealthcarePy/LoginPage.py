@@ -42,7 +42,7 @@ class WindowClass(QDialog, form_class) :
             if(result.get('userId') != None):
                 print("로그인 성공")
                 self.hide()
-                self.mainPage = WindowClass2()
+                self.mainPage = WindowClass2(id)
                 self.mainPage.exec()
                 self.show()
             else:

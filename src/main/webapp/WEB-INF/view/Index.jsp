@@ -19,6 +19,11 @@
 		${v.getCnt() }
 	</c:forEach>
 	
+	<form action="${pageContext.request.contextPath}/toMyPage" method="get">
+		<input type="submit" value="마이페이지">
+		
+	</form>
+	
 	
 </body>
 </html>

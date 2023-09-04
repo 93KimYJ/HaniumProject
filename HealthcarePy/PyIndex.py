@@ -15,9 +15,10 @@ naxtPageFlag = 0
 
 # 화면을 띄우는데 사용되는 Class 선언
 class WindowClass2(QDialog, form_class) :
-    def __init__(self) :
+    def __init__(self, uid) :
         super().__init__()
         self.setupUi(self)
+        self.uid = uid
 
         #self.fingerCountDef()
 
@@ -42,13 +43,14 @@ class WindowClass2(QDialog, form_class) :
     def fingerCountDef(self):
         naxtPageFlag = Finger_counter.startFingerCount()
         print("nextPageFlag: ", naxtPageFlag)
+        print(self.uid)
     
         if naxtPageFlag == 1:
             self.startDumbbelWithFinger()
 
     def startDumbbelWithFinger(self):
         print("dumbbell")
-        Dumbbell.start()
+        Dumbbell.start(self.uid)
         self.fingerCountDef()
 
     # def startPushUpFuc(self):

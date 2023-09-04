@@ -8,14 +8,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.kopo.dao.ExerciseDAO;
 import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserDAO;
 import kr.ac.kopo.dao.UserMapper;
+import kr.ac.kopo.service.AccountService;
 import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
 
@@ -28,8 +31,12 @@ public class ApiController {
 	@Autowired
 	private ExerciseDAO edao;
 	
+	@Autowired
+	private AccountService accountService;
+	
 	private final ExerciseMapper exerciseMapper;
 	private final UserMapper userMapper;
+	
 	@Autowired
 	ApiController(ExerciseMapper exerciseMapper, UserMapper userMapper) {
 		this.userMapper = userMapper;
@@ -67,21 +74,17 @@ public class ApiController {
 	
 	@RequestMapping("/pyLogin")
 	public ResponseEntity<UserVO> pyLogin(@RequestBody UserVO vo) {
+		UserVO sentData = new UserVO();
 		
 		System.out.println(vo.getUserId() + " : "  + vo.getPassword());
+		boolean result = accountService.userLogin(vo.getUserId(), vo.getPassword());
 		
-		UserVO reVo = new UserVO();
-		System.out.println(reVo);
-
-		UserVO logResult = userMapper.userCheck(vo);
-		
-		if(logResult != null) {
-			reVo = logResult;
+		if(result) {
+			sentData = vo;
 		}
 		
-		System.out.println(reVo);
-		
-		return ResponseEntity.ok(reVo);
+		System.out.println(sentData);
+		return ResponseEntity.ok(sentData);
 	}
 	
 	@RequestMapping("/fingerCounterPy")
@@ -98,6 +101,9 @@ public class ApiController {
 		
 		return "Index";
 	}
+	
+	
+	
 
 }
 

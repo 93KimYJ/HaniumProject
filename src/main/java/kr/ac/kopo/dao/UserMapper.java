@@ -11,6 +11,6 @@ public interface UserMapper {
 	@Select("SELECT EMAIL FROM HC_USER WHERE USER_ID = #{id}")
 	UserVO getUserEmailwithId(String id);
 	
-	@Select("SELECT * FROM HC_USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}")
-	UserVO userCheck(UserVO vo);
+	@Select("SELECT USER_ID FROM HC_USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}")
+	String userCheck(UserVO vo);
 }

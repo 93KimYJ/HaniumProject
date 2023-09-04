@@ -13,7 +13,7 @@
 		<h1>User Login</h1>
 			<form action="${pageContext.request.contextPath}/executeLogin" method="post">
 	            <div class="signinbox">
-	        	    <input type="text" placeholder="  아이디" name="id" class="idbox">
+	        	    <input type="text" placeholder="아이디" name="uid" class="idbox">
 	        	    <br>
 	        	    <input type="password" placeholder="  비밀번호" name="password" class="passwordbox">
 	            </div>

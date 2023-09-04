@@ -25,7 +25,7 @@ def calculate_angle(a,b,c):
 # Curl counter variables
 
 ## Setup mediapipe instance
-def start():
+def start(uid):
     cap = cv2.VideoCapture(0)
     counter = 0 
     stage = None
@@ -109,7 +109,7 @@ def start():
 
             if cv2.waitKey(10) & 0xFF == ord('q') or leftHand > rightHand:
                 user_data = {
-                    'userId': 'idid',
+                    'userId': uid,
                     'type' : 'dumbbel',
                     'cnt': counter,
                 }

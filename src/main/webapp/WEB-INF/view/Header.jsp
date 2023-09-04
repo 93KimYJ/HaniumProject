@@ -32,7 +32,7 @@
               <li><a>스쿼트</a></li>
               <li><a>랭킹?</a></li>
               <li><a>또 뭐 넣지</a></li>
-              <li><a>마이페이지</a></li>
+              <li><a href="${pageContext.request.contextPath}/toMyPage">마이페이지</a></li>
             </ul>
           </div>
         </nav>
