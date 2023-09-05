@@ -42,19 +42,7 @@ public class ApiController {
 		this.userMapper = userMapper;
 		this.exerciseMapper = exerciseMapper;
 	}
-	
 
-	
-	@RequestMapping("/testApi")
-	public List<String> testListApi() {
-		
-		List<String> li = new ArrayList<>();
-		li.add("100");
-		li.add("200");
-		li.add("200");
-		
-		return li;
-	}
 	
 	@RequestMapping("/pyAppMapping")
 	public Map<String, String> webIp() {
@@ -97,7 +85,7 @@ public class ApiController {
 	@RequestMapping("/exercisePy")
 	public String getDataTest(@RequestBody ExerciseVO apiVo, Model model) {
 		System.out.println("IndexController: " + apiVo);
-		exerciseMapper.insertExerciseData(apiVo);
+		exerciseMapper.insert_exerciseData(apiVo);
 		
 		return "Index";
 	}

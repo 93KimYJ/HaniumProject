@@ -15,9 +15,13 @@ import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserDAO;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
+import kr.ac.kopo.vo.ExerciseVO;
 
 @RestController
 public class ViewApiController {
+	@Autowired
+	private ExerciseVO evo;
+	
 	@Autowired
 	private UserDAO dao;
 	
@@ -39,12 +43,38 @@ public class ViewApiController {
 	@GetMapping("/getExerciseCount")
 	public ResponseEntity<Map<String, Integer>> ajaxTest(@RequestParam  String type) {
 			
-		Map<String, Integer> exCountMap = new HashMap<String, Integer>();
+		Map<String, Integer> responseMap = new HashMap<String, Integer>();
 		
-		System.out.println(type);
-		int tryNum = exerciseMapper.selectExerciseTryWithType(type, "idid");
-		exCountMap.put(type, tryNum);
+		evo.setType(type);
+		evo.setUserId("idid");
 		
-		return ResponseEntity.ok(exCountMap);
+		// count
+		Integer todayCount = exerciseMapper.select_today_exerciseCount_withUid_andType(evo);
+		Integer weekCount = exerciseMapper.select_week_exerciseCount_withUid_andType(evo);
+		Integer monthCount = exerciseMapper.select_month_exerciseCount_withUid_andType(evo);
+		Integer yearCount = exerciseMapper.select_year_exerciseCount_withUid_andType(evo);
+		Integer alltimeCount = exerciseMapper.select_allTime_exerciseCount_withUid_andType(evo);
+		
+		// tryCnt
+		Integer todayTry = exerciseMapper.select_today_exerciseTryCount_withUid_andType(evo);
+		Integer weekTry = exerciseMapper.select_week_exerciseTryCount_withUid_andType(evo);
+		Integer monthTry = exerciseMapper.select_month_exerciseTryCount_withUid_andType(evo);
+		Integer yearTry = exerciseMapper.select_year_exerciseTryCount_withUid_andType(evo);
+		Integer alltimeTry = exerciseMapper.select_allTime_exerciseTryCount_withUid_andType(evo);
+		
+		// 
+		responseMap.put("todayCount", todayCount);
+		responseMap.put("weekCount", weekCount);
+		responseMap.put("monthCount", monthCount);
+		responseMap.put("yearCount", yearCount);
+		responseMap.put("allTimeCount", alltimeCount);
+		
+		responseMap.put("todayTry", todayTry);
+		responseMap.put("weekTry", weekTry);
+		responseMap.put("monthTry", monthTry);
+		responseMap.put("yearTry", yearTry);
+		responseMap.put("allTimeTry", alltimeTry);
+		
+		return ResponseEntity.ok(responseMap);
 	}
 }

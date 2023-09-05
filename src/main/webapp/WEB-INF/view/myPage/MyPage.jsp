@@ -12,9 +12,7 @@
 <body>
 	<c:import url="/WEB-INF/view/Header.jsp" />
 	<h1>마이페이지</h1>
-	총 운동 횟수 (덤벨) : ${totalCount}<br>
-	이번달 총합 (덤벨) : ${monthCount}<br>
-	모든 운동 세트 총 합 : ${totalTry}
+	모든 운동 세트 총 합 : ${totalTry}<br>
 	
 <%-- 	<form method="get" action="${pageContext.request.contextPath}/getExerciseCount"></form> --%>
 	<button id="selectButton">선택</button>
@@ -23,34 +21,39 @@
 		<option value="pushUp">팔굽혀펴기</option>
 	</select>
 	
-	<div id="exerciseTryData"></div>
+	<div id="searchExerciseDataDiv" style="display:none">
 	
+		<div id="toDayInfo">
+			<h4>오늘</h4>
+			<p class="searchExData" id="todayTry"></p>
+			<p class="searchExData" id="todayCount"></p>
+		</div>
+		<div id="weekInfo">
+			<h4>이번 주</h4>
+			<p class="searchExData" id="weekTry"></p>
+			<p class="searchExData" id="weekCount"></p>
+		</div>
+		<div id="monthInfo">
+			<h4>이번 달</h4>
+			<p class="searchExData" id="monthTry"></p>
+			<p class="searchExData" id="monthCount"></p>
+		</div>
+		<div id="yearInfo">
+			<h4>올 해</h4>
+			<p class="searchExData" id="yearTry"></p>
+			<p class="searchExData" id="yearCount"></p>
+		</div>
+		<div id="allTimeInfo">
+			<h4>총 합</h4>
+			<p class="searchExData" id="allTimeTry"></p>
+			<p class="searchExData" id="allTimeCount"></p>
+		</div>
+	
+	</div>
+	
+	<script src="js/ajax.js"></script> <!-- webapp/static 아래에 있음 -->
 	<script type="text/javascript">
-	$("#selectButton").click(function() {
-		
-		var type = $("#exerciseSelect").val();
-		
-		$.ajax({
-			url: "${pageContext.request.contextPath}/getExerciseCount",
-			type: "GET",
-			dataType: "json",
-			data: {type : type},
-			success: function(data) {
-                // 서버에서 받은 JSON 데이터를 사용하여 컴포넌트 변경
-                var appendDiv = $("#exerciseTryData");
-                appendDiv.empty(); // 컴포넌트 초기화
 
-                // JSON 데이터 반복하며 컴포넌트에 추가
-                $.each(data, function(key, value) {
-                	console.log(value)
-                    appendDiv.append("<p>" + key + " : " + value + "</p>");
-                });
-            },
-            error: function() {
-                alert("데이터를 가져오는 데 실패했습니다.");
-            }
-		});
-	});
 </script>
 </body>
 </html>

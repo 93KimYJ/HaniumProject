@@ -2,6 +2,8 @@ package kr.ac.kopo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ import kr.ac.kopo.vo.UserVO;
 public class ViewController {
 	
 	@Autowired
+	private HttpSession session;
+	
+	@Autowired
 	private UserVO uvo;
 	
 	@Autowired
@@ -27,8 +32,6 @@ public class ViewController {
 
 	@Autowired
 	private ExerciseDAO dao;
-	
-
 	
 	private final UserMapper userMapper;
 	private final ExerciseMapper exerciseMapper;
@@ -41,19 +44,18 @@ public class ViewController {
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
-		// 실험을 위해 각종 변수들로 지저분함
-//		List<ExerciseVO> evoList = dao.getExerciseData("idid");	
+		String uid = (String)session.getAttribute("uid");
 		
-		List<ExerciseVO> evoList = exerciseMapper.selectExerciseDataTest("idid");
+		evo.setType("dumbbel");
+		evo.setUserId(uid);
 		
-		String todayCount = exerciseMapper.selectTodayExerciseCount("dumbbel", "idid");
+		List<ExerciseVO> evoList = exerciseMapper.select_ExerciseDataTest(uid);
+		Integer todayCount = exerciseMapper.select_today_exerciseCount_withUid_andType(evo);
+		List<ExerciseVO> topList = exerciseMapper.select_allTime_topFiveExerciseCount_withType("dumbbel");
 		
 		model.addAttribute("exList" , evoList);
 		model.addAttribute("todayCount", todayCount);
-		
-		System.out.println("IndexController:"+evoList);
-		UserVO vo = userMapper.getUserEmailwithId("idid");
-		System.out.println(vo);
+		model.addAttribute("topFiveList", topList);
 		
 		return "Index";
 	}
@@ -70,23 +72,27 @@ public class ViewController {
 	}
 	
 	@GetMapping("/toMyPage")
-	public String toMyPage(Model model, String id) {
+	public String toMyPage(Model model) {
+		String uid = (String)session.getAttribute("uid");
 		
-		evo.setUserId("idid");
+		evo.setUserId(uid);
 		evo.setType("dumbbel");
 		
-		int totalCount = exerciseMapper.selectTotalExerciseCount(evo);
-		
-		Integer getMonth = exerciseMapper.selectMonthExerciseCount("dumbbel", "idid");
-		int monthCount = getMonth == null ? 0 : getMonth; // 이러한 형태의 로직은 서비스단으로 분리할것
-		
-		int totalTry = exerciseMapper.selectTotalExerciseTry("idid");
-		
-		
-		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("monthCount", monthCount);
+		Integer totalTry = exerciseMapper.select_allTime_exerciseTryCount_withUid(uid);
+
 		model.addAttribute("totalTry", totalTry);
 		
+		/*
+		 기능
+		 
+		 유저 운동 통계
+		 	기본 보여주기
+		 		오늘, 이번주, 이번달 가장 많이 한 운동
+		 			세트, 카운트
+		 	선택해서 상세 보기
+		 		시간별 세트, 카운트
+		 
+		 */
 		
 		return "myPage/MyPage";
 	}

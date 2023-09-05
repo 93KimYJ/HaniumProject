@@ -17,6 +17,7 @@ import kr.ac.kopo.vo.UserVO;
 @Controller
 public class AccountController {
 	
+	@Autowired
 	private HttpSession session;
 	
 	@Autowired
@@ -42,15 +43,22 @@ public class AccountController {
 	
 	@PostMapping("executeLogin")
 	public String login(Model model, String uid, String password) {
-
+		
 		boolean result = accountService.userLogin(uid, password);
 		
 		if (result) {
 			System.out.println("로그인 성공");
+			session.setAttribute("uid", uid);
 		} else {
 			System.out.println("로그인 실패");
 		}
-		
+
+		return "redirect:/index";
+	}
+	
+	@PostMapping("exequteLogout")
+	public String logout(Model model) {
+		session.removeAttribute("uid");
 		return "Index";
 	}
 	

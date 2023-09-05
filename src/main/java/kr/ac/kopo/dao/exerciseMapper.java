@@ -14,66 +14,98 @@ import kr.ac.kopo.vo.UserVO;
 @Mapper
 public interface ExerciseMapper {
 	
+	// 작명규칙
+	// 행위_기간_목표_with조건_and추가조건_and추가조건...
 	
 	@Select("SELECT * FROM EXERCISE WHERE USER_ID = #{uid} ORDER BY E_NO DESC ")
-	List<ExerciseVO> selectExerciseDataTest(String uid);
+	List<ExerciseVO> select_ExerciseDataTest(String uid);
 	
-	/**
-	 * 사용자 운동 정보 추가
-	 * @param vo
-	 */
+	
+	
 	@Insert("INSERT INTO exercise (E_NO, USER_ID, TYPE, CNT) "
 			+ "VALUES (COALESCE((SELECT MAX(E_NO) + 1 FROM exercise), 1), #{userId}, #{type}, #{cnt}) ")
-	void insertExerciseData(ExerciseVO vo);
+	void insert_exerciseData(ExerciseVO vo);
 	
-	/**
-	 * 선택한 타입의 오늘 운동 횟수 반환
-	 * @param type
-	 * @param userId
-	 * @return
-	 */
-	@Select("SELECT sum(cnt) FROM exercise "
+	
+	// 일, 주, 월, 년, 전체 CNT
+	@Select("SELECT COALESCE(sum(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE) AND END_TIME < TRUNC(SYSDATE) + 1 "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
-	String selectTodayExerciseCount(@Param("type")String type, @Param("userId")String userId);
+	Integer select_today_exerciseCount_withUid_andType(ExerciseVO vo);
 	
-	/**
-	 * 선택한 타입의 이번 달 운동 횟수 반환
-	 * @param type
-	 * @param userId
-	 * @return
-	 */
-	@Select("SELECT SUM(cnt) FROM exercise "
+	
+	
+	@Select("SELECT COALESCE(sum(cnt), 0) FROM exercise "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 1 "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_week_exerciseCount_withUid_andType(ExerciseVO vo);
+	
+	
+	
+	@Select("SELECT COALESCE(SUM(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'MONTH') AND END_TIME < ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), 1) "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
-	Integer selectMonthExerciseCount(@Param("type")String type, @Param("userId")String userId);
+	Integer select_month_exerciseCount_withUid_andType(ExerciseVO vo);
 	
-	/**
-	 * 선택한 타입의 운동 횟수의 총 합 반환
-	 * @param vo
-	 * @return
-	 */
-	@Select("SELECT sum(cnt) FROM EXERCISE "
+
+	
+	@Select("SELECT COALESCE(SUM(CNT), 0) FROM EXERCISE "
+			+ "WHERE TO_CHAR(END_TIME, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY') "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_year_exerciseCount_withUid_andType(ExerciseVO vo);
+	
+	
+	
+	@Select("SELECT COALESCE(sum(cnt), 0) FROM EXERCISE "
 			+ "WHERE USER_ID = #{userId} AND TYPE = #{type} ")
-	int selectTotalExerciseCount(ExerciseVO vo);
+	Integer select_allTime_exerciseCount_withUid_andType(ExerciseVO vo);
+	//
+
+	// 일 주 월 년 전체 tryCnt
+	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE) AND END_TIME < TRUNC(SYSDATE) + 1 "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_today_exerciseTryCount_withUid_andType(ExerciseVO vo);
 	
-	/**
-	 * 지금까지 한 운동 세트의 수 반환
-	 * @param userId
-	 * @return
-	 */
-	@Select("SELECT count(user_id) FROM EXERCISE "
+	
+	
+	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 1 "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_week_exerciseTryCount_withUid_andType(ExerciseVO vo);
+	
+	
+	
+	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'MONTH') AND END_TIME < ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), 1) "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_month_exerciseTryCount_withUid_andType(ExerciseVO vo);
+	
+
+	
+	@Select("SELECT COALESCE(count(CNT), 0) FROM EXERCISE "
+			+ "WHERE TO_CHAR(END_TIME, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY') "
+			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
+	Integer select_year_exerciseTryCount_withUid_andType(ExerciseVO vo);
+	
+	
+	
+	@Select("SELECT COALESCE(count(cnt), 0) FROM EXERCISE "
+			+ "WHERE USER_ID = #{userId} AND TYPE = #{type} ")
+	Integer select_allTime_exerciseTryCount_withUid_andType(ExerciseVO vo);	
+	
+	
+	
+	
+	//
+	@Select("SELECT COALESCE(count(user_id), 0) FROM EXERCISE "
 			+ "WHERE USER_ID = #{userId}")
-	int selectTotalExerciseTry(@Param("userId")String userId);
+	Integer select_allTime_exerciseTryCount_withUid(@Param("userId")String userId);
 	
-	/**
-	 * 선택한 타입의 운동 횟수 전체 반환
-	 * @param type
-	 * @param userId
-	 * @return
-	 */
-	@Select("SELECT count(user_id) FROM EXERCISE "
-			+ "WHERE USER_ID = #{userId} AND TYPE = #{type}")
-	int selectExerciseTryWithType(@Param("type")String type, @Param("userId")String userId);
-	// 뭔가 식별하기 힘드니 가능한 빨리 뜯어고치도록 하자
+	
+	
+	@Select("SELECT USER_ID, COALESCE(MAX(CNT), 0 ) AS CNT FROM EXERCISE "
+			+ "WHERE TYPE= #{type} GROUP BY USER_ID ORDER BY CNT DESC ")
+	List<ExerciseVO> select_allTime_topFiveExerciseCount_withType(@Param("type")String type);
+	
 }
