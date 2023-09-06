@@ -1,5 +1,8 @@
 package kr.ac.kopo.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ExerciseVO {
 
 	private long eNo;

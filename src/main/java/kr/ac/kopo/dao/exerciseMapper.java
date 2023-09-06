@@ -27,12 +27,15 @@ public interface ExerciseMapper {
 	void insert_exerciseData(ExerciseVO vo);
 	
 	
-	// 일, 주, 월, 년, 전체 CNT
+	/**
+	 * 일, 주, 월, 년, 전체시간 운동 동작 횟수 총 합 구하는 메서드들
+	 * @param vo
+	 * @return
+	 */
 	@Select("SELECT COALESCE(sum(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE) AND END_TIME < TRUNC(SYSDATE) + 1 "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_today_exerciseCount_withUid_andType(ExerciseVO vo);
-	
 	
 	
 	@Select("SELECT COALESCE(sum(cnt), 0) FROM exercise "
@@ -41,32 +44,33 @@ public interface ExerciseMapper {
 	Integer select_week_exerciseCount_withUid_andType(ExerciseVO vo);
 	
 	
-	
 	@Select("SELECT COALESCE(SUM(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'MONTH') AND END_TIME < ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), 1) "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_month_exerciseCount_withUid_andType(ExerciseVO vo);
 	
 
-	
 	@Select("SELECT COALESCE(SUM(CNT), 0) FROM EXERCISE "
 			+ "WHERE TO_CHAR(END_TIME, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY') "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_year_exerciseCount_withUid_andType(ExerciseVO vo);
 	
 	
-	
 	@Select("SELECT COALESCE(sum(cnt), 0) FROM EXERCISE "
 			+ "WHERE USER_ID = #{userId} AND TYPE = #{type} ")
 	Integer select_allTime_exerciseCount_withUid_andType(ExerciseVO vo);
 	//
+	
 
-	// 일 주 월 년 전체 tryCnt
+	/**
+	 * 일, 주, 월, 년, 전체시간 운동 세트 총 합 구하는 메서드들
+	 * @param vo
+	 * @return
+	 */
 	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE) AND END_TIME < TRUNC(SYSDATE) + 1 "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_today_exerciseTryCount_withUid_andType(ExerciseVO vo);
-	
 	
 	
 	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
@@ -75,12 +79,10 @@ public interface ExerciseMapper {
 	Integer select_week_exerciseTryCount_withUid_andType(ExerciseVO vo);
 	
 	
-	
 	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
 			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'MONTH') AND END_TIME < ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), 1) "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_month_exerciseTryCount_withUid_andType(ExerciseVO vo);
-	
 
 	
 	@Select("SELECT COALESCE(count(CNT), 0) FROM EXERCISE "
@@ -89,12 +91,33 @@ public interface ExerciseMapper {
 	Integer select_year_exerciseTryCount_withUid_andType(ExerciseVO vo);
 	
 	
-	
 	@Select("SELECT COALESCE(count(cnt), 0) FROM EXERCISE "
 			+ "WHERE USER_ID = #{userId} AND TYPE = #{type} ")
 	Integer select_allTime_exerciseTryCount_withUid_andType(ExerciseVO vo);	
+	//
 	
 	
+	/**
+	 * 전체 유저 세트 수 평균
+	 * @return
+	 */
+	@Select("SELECT AVG(COUNT_PER_USER) AS CNT "
+			+ "FROM ( "
+			+ "    SELECT USER_ID, COUNT(*) AS COUNT_PER_USER "
+			+ "    FROM EXERCISE "
+			+ "    WHERE END_TIME >= TRUNC(SYSDATE, 'MONTH') AND END_TIME < ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), 1) "
+			+ "    GROUP BY USER_ID "
+			+ ") ")
+	Integer select_month_allUserExerciseTryCountAverage();
+			
+	
+	@Select("SELECT AVG(COUNT_PER_USER) AS CNT "
+			+ "FROM ( "
+			+ "    SELECT USER_ID, COUNT(*) AS COUNT_PER_USER "
+			+ "    FROM EXERCISE "
+			+ "    GROUP BY USER_ID "
+			+ ") ")
+	Integer select_allTime_allUserExerciseTryCountAverage();
 	
 	
 	//

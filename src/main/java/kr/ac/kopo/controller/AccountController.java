@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import kr.ac.kopo.dao.ExerciseDAO;
 import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
@@ -25,20 +24,18 @@ public class AccountController {
 	
 	@Autowired
 	private ExerciseVO evo;
-
-	@Autowired
-	private ExerciseDAO dao;
 	
 	@Autowired
 	private AccountService accountService;
 	
-	private final UserMapper userMapper;
-	private final ExerciseMapper exerciseMapper;
+	@Autowired
+	private UserMapper userMapper;
 	
 	@Autowired
-    public AccountController(UserMapper userMapper, ExerciseMapper exerciseMapper) {
-        this.userMapper = userMapper;
-        this.exerciseMapper = exerciseMapper;
+	private ExerciseMapper exerciseMapper;
+	
+    public AccountController() {
+
     }
 	
 	@PostMapping("executeLogin")

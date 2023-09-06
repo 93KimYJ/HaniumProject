@@ -10,39 +10,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.ac.kopo.dao.ExerciseDAO;
 import kr.ac.kopo.dao.ExerciseMapper;
-import kr.ac.kopo.dao.UserDAO;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
 import kr.ac.kopo.vo.ExerciseVO;
 
 @RestController
 public class ViewApiController {
+	
 	@Autowired
 	private ExerciseVO evo;
 	
 	@Autowired
-	private UserDAO dao;
-	
-	@Autowired
-	private ExerciseDAO edao;
-	
-	@Autowired
 	private AccountService accountService;
 	
-	private final ExerciseMapper exerciseMapper;
-	private final UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 	
 	@Autowired
-	ViewApiController(ExerciseMapper exerciseMapper, UserMapper userMapper) {
-		this.userMapper = userMapper;
-		this.exerciseMapper = exerciseMapper;
+	private ExerciseMapper exerciseMapper;
+	
+	ViewApiController() {
+		
 	}
 	
 	@GetMapping("/getExerciseCount")
 	public ResponseEntity<Map<String, Integer>> ajaxTest(@RequestParam  String type) {
-			
+		
 		Map<String, Integer> responseMap = new HashMap<String, Integer>();
 		
 		evo.setType(type);
@@ -61,6 +55,9 @@ public class ViewApiController {
 		Integer monthTry = exerciseMapper.select_month_exerciseTryCount_withUid_andType(evo);
 		Integer yearTry = exerciseMapper.select_year_exerciseTryCount_withUid_andType(evo);
 		Integer alltimeTry = exerciseMapper.select_allTime_exerciseTryCount_withUid_andType(evo);
+		
+		Integer allUserTryCnt = exerciseMapper.select_allTime_allUserExerciseTryCountAverage();
+		System.out.println(allUserTryCnt);
 		
 		// 
 		responseMap.put("todayCount", todayCount);

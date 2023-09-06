@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.ac.kopo.dao.ExerciseDAO;
 import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
@@ -29,22 +28,21 @@ public class ViewController {
 	
 	@Autowired
 	private ExerciseVO evo;
-
-	@Autowired
-	private ExerciseDAO dao;
-	
-	private final UserMapper userMapper;
-	private final ExerciseMapper exerciseMapper;
 	
 	@Autowired
-    public ViewController(UserMapper userMapper, ExerciseMapper exerciseMapper) {
-        this.userMapper = userMapper;
-        this.exerciseMapper = exerciseMapper;
+	private UserMapper userMapper;
+	
+	@Autowired
+	private ExerciseMapper exerciseMapper;
+	
+    public ViewController() {
+    	
     }
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		String uid = (String)session.getAttribute("uid");
+		uid = uid != null ? uid : "";
 		
 		evo.setType("dumbbel");
 		evo.setUserId(uid);
@@ -56,6 +54,7 @@ public class ViewController {
 		model.addAttribute("exList" , evoList);
 		model.addAttribute("todayCount", todayCount);
 		model.addAttribute("topFiveList", topList);
+		System.out.println(topList);
 		
 		return "Index";
 	}

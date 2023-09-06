@@ -13,49 +13,41 @@
 	<context:component-scan base-package="kr.ac.kopo" />
 	
 	<!-- connection -->
-	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="hr" />
 		<property name="password" value="hr" />
-	</bean>
+	</bean> -->
 
-	<!-- DAO -->
- 	<bean id="exerciseDAO" class="kr.ac.kopo.dao.ExerciseDAO" />
- 	<bean id="exerciseVO" class="kr.ac.kopo.vo.ExerciseVO" />
- 	
- 	<bean id="userDAO" class="kr.ac.kopo.dao.UserDAO" />
- 	<bean id="userVO" class="kr.ac.kopo.vo.UserVO" />
-    
     <!-- SqlSessionFactory 빈 등록 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations" value="classpath*:mapper/*.xml" />
         <property name="configuration">
 	        <bean class="org.apache.ibatis.session.Configuration">
-	            <!-- underscore to camel case 매핑 활성화 -->
 	            <property name="mapUnderscoreToCamelCase" value="true"/>
 	        </bean>
    		</property>
-    </bean>
+    </bean> -->
 
     <!-- sqlMapper 빈 등록 -->
-    <bean id="userMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <!-- <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="kr.ac.kopo.dao.UserMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-    </bean>
+    </bean> -->
     
-    <bean id="exerciseMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <!-- <bean id="exerciseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
     	<property name="mapperInterface" value="kr.ac.kopo.dao.ExerciseMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
-    
+     
+    url 단축
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="prefix" value="/WEB-INF/view/"/>
     	<property name="suffix" value=".jsp"/>
     </bean>
     
-	<mvc:resources location="/static/" mapping="/**"></mvc:resources>
-	<mvc:annotation-driven />
+	<mvc:resources location="/static/" mapping="/**"></mvc:resources> -->
+	<!-- <mvc:annotation-driven /> -->
 </beans>

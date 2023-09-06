@@ -11,6 +11,8 @@
 
 <body>
 	<c:import url="/WEB-INF/view/Header.jsp" />
+	만들것들<br>
+	세트 당 평균 횟수, 평균 횟수 유저 전체평균과 비교, 이전 기록과 비교, 최고 기록
 	<h1>마이페이지</h1>
 	모든 운동 세트 총 합 : ${totalTry}<br>
 	

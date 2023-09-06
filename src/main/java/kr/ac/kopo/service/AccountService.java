@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.ExerciseMapper;
-import kr.ac.kopo.dao.UserDAO;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.vo.UserVO;
 
@@ -12,16 +11,13 @@ import kr.ac.kopo.vo.UserVO;
 public class AccountService {
 	
 	@Autowired
-	private UserDAO dao;
-	
-	@Autowired
 	private UserVO vo;
 	
-	private final UserMapper userMapper;
-	
 	@Autowired
-	AccountService(UserMapper userMapper) {
-		this.userMapper = userMapper;
+	private UserMapper userMapper;
+	
+	AccountService() {
+
 	}
 	
 	public boolean userLogin(String id, String pw) {
