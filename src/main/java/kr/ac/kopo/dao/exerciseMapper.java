@@ -39,7 +39,7 @@ public interface ExerciseMapper {
 	
 	
 	@Select("SELECT COALESCE(sum(cnt), 0) FROM exercise "
-			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 1 "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 7 "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_week_exerciseCount_withUid_andType(ExerciseVO vo);
 	
@@ -74,7 +74,7 @@ public interface ExerciseMapper {
 	
 	
 	@Select("SELECT COALESCE(count(cnt), 0) FROM exercise "
-			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 1 "
+			+ "WHERE END_TIME >= TRUNC(SYSDATE, 'IW') AND END_TIME < TRUNC(SYSDATE, 'IW') + 7 "
 			+ "AND TYPE = #{type} AND USER_ID = #{userId} ")
 	Integer select_week_exerciseTryCount_withUid_andType(ExerciseVO vo);
 	

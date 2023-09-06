@@ -74,4 +74,12 @@ public class ViewApiController {
 		
 		return ResponseEntity.ok(responseMap);
 	}
+	
+	@GetMapping("/getExerciseRecode")
+	public ResponseEntity<ExerciseVO> getExerciseRecode() {
+		
+		
+		
+		return null;
+	}
 }

@@ -13,6 +13,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @MapperScan("kr.ac.kopo.dao")
 public class MyBatisConfig {
 	
+	public MyBatisConfig() {
+		System.out.println("마이바티스");
+	}
+	
 	@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

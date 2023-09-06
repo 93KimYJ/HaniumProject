@@ -1,6 +1,5 @@
 package kr.ac.kopo.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -13,6 +12,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "kr.ac.kopo") // 컨트롤러 클래스가 있는 패키지
 public class WebConfig implements WebMvcConfigurer {
+	
+	public WebConfig() {
+		System.out.println("...");
+	}
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {

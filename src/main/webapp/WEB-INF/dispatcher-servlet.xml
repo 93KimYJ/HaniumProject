@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="kr.ac.kopo" />
+	<!-- <context:component-scan base-package="kr.ac.kopo" /> -->
 	
 	<!-- connection -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

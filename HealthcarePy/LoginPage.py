@@ -37,6 +37,7 @@ class WindowClass(QDialog, form_class) :
             # 요청 성공
             print('데이터 전송 성공')
 
+
             result = response.json()
             print(result)
             if(result.get('userId') != None):

@@ -53,7 +53,7 @@
 	
 	</div>
 	
-	<script src="js/ajax.js"></script> <!-- webapp/static 아래에 있음 -->
+	<script src="/static/js/ajax.js"></script> <!-- webapp/static 아래에 있음 -->
 	<script type="text/javascript">
 
 </script>
