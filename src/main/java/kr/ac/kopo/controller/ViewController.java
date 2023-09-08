@@ -72,14 +72,22 @@ public class ViewController {
 	
 	@GetMapping("/toMyPage")
 	public String toMyPage(Model model) {
+		ExerciseVO evo2 = new ExerciseVO();
 		String uid = (String)session.getAttribute("uid");
 		
 		evo.setUserId(uid);
 		evo.setType("dumbbel");
 		
+		evo2.setUserId(uid);
+		evo2.seteNo(17);
+		evo2.setCnt(5);
+		
 		Integer totalTry = exerciseMapper.select_allTime_exerciseTryCount_withUid(uid);
-
+		List<ExerciseVO> exRecodeList = exerciseMapper.select_exerciseRecode_withUid_andRange(evo2);
+		System.out.println(exRecodeList);
+		
 		model.addAttribute("totalTry", totalTry);
+		model.addAttribute("exRecodeList", exRecodeList);
 		
 		/*
 		 기능

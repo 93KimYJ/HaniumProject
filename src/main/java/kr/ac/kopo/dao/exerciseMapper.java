@@ -121,6 +121,24 @@ public interface ExerciseMapper {
 	
 	
 	//
+	
+	
+	
+	/**
+	 * 운동 데이터 레코드 가져오기
+	 * @param userId
+	 * @return
+	 */
+	@Select("SELECT * FROM ( "
+			+ "	SELECT * FROM exercise "
+			+ "	WHERE user_id = #{userId} AND E_NO <= #{eNo} "
+			+ "	ORDER BY END_TIME DESC "
+			+ "	) "
+			+ "WHERE rownum <= #{cnt} ")
+	List<ExerciseVO> select_exerciseRecode_withUid_andRange(ExerciseVO vo);
+	
+	
+	
 	@Select("SELECT COALESCE(count(user_id), 0) FROM EXERCISE "
 			+ "WHERE USER_ID = #{userId}")
 	Integer select_allTime_exerciseTryCount_withUid(@Param("userId")String userId);

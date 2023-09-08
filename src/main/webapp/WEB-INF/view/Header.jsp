@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Health Care</title>
-    <link rel="stylesheet" type="text/css" href="css/Header.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/Header.css" />
   </head>
   <body>
     <div class="headerbody">

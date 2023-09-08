@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/Header.jsp" %>
 <title>Health Care</title>
-<link rel="stylesheet" type="text/css" href="css/SignIn.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/SignIn.css" />
 </head>
 <body>
 	<div class="signinbody">

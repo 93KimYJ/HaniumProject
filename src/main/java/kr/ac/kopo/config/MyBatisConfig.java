@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class MyBatisConfig {
 	
 	public MyBatisConfig() {
-		System.out.println("마이바티스");
+		System.out.println("myBatis");
 	}
 	
 	@Bean

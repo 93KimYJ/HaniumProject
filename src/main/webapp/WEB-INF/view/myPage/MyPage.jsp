@@ -16,6 +16,11 @@
 	<h1>마이페이지</h1>
 	모든 운동 세트 총 합 : ${totalTry}<br>
 	
+	<h3>운동기록</h3>
+	<c:forEach var="vo" items="${ exRecodeList }">
+		${vo.toString() } <br>
+	</c:forEach>
+	
 <%-- 	<form method="get" action="${pageContext.request.contextPath}/getExerciseCount"></form> --%>
 	<button id="selectButton">선택</button>
 	<select id="exerciseSelect">

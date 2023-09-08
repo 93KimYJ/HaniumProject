@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ExerciseVO {
-
+	// 바꾸지 말고 추가할것
 	private long eNo;
 	private String userId;
 	private String type;
 	private int cnt;
 	private int avgCnt;
 	private int maxCnt;
-	private String date;
+	private String endTime;
 	
 	public long geteNo() {
 		return eNo;
@@ -49,17 +49,17 @@ public class ExerciseVO {
 	public void setMaxCnt(int maxCnt) {
 		this.maxCnt = maxCnt;
 	}
-	public String getDate() {
-		return date;
+	public String getEndTime() {
+		return endTime;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	
 	@Override
 	public String toString() {
 		return "ExerciseVO [eNo=" + eNo + ", userId=" + userId + ", type=" + type + ", cnt=" + cnt + ", avgCnt=" + avgCnt
-				+ ", maxCnt=" + maxCnt + ", date=" + date + "]";
+				+ ", maxCnt=" + maxCnt + ", endTime=" + endTime + "]";
 	}
 	
 	
