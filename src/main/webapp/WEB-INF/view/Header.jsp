@@ -10,7 +10,7 @@
   <body>
     <div class="headerbody">
       <div class="headercontainer">
-        <img class="headerlogo" src="img/logo.png" alt="" />
+        <img class="headerlogo" src="/static/img/logo.png" alt="" />
         <a class="headertitle" href="${pageContext.request.contextPath}/index">Health Care System</a>
         <nav class="headerright">
           <% if (session.getAttribute("userId") == null) { %>
