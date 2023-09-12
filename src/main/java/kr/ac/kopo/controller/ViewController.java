@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,6 +16,7 @@ import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
 import kr.ac.kopo.service.ExerciseDataService;
+import kr.ac.kopo.service.UserService;
 import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
 
@@ -36,6 +38,10 @@ public class ViewController {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private UserService userService;
+
+	  
 	@Autowired
 	private ExerciseMapper exerciseMapper;
 	
@@ -66,12 +72,26 @@ public class ViewController {
 	@RequestMapping("/toLogin")
 	public String toLogin(Model model) {
 		
-		return "account/SingIn";
+		return "account/Login";
 	}
 	
-	@RequestMapping("/toSingUp")
+/*	@RequestMapping("/toSignUp")
 	public String toSingUp(Model model) {
-		return "account/SingUp";
+		return "account/SignUp";
+	}
+	*/
+	@GetMapping("/toSignUp")
+	public String toSignUp(Model model) {
+	    return "account/SignUp";
+	    }
+	
+	@PostMapping("/signup")
+	public String signUp(UserVO user, Model model) {
+		// 회원가입 서비스 호출
+		System.out.println(user);
+		userService.signUpUser(user);
+		System.out.println(user);
+		return "redirect:/toLogin"; // 회원가입 성공 시 로그인 페이지로 이동
 	}
 	
 	@GetMapping("/toMyPage")
@@ -104,8 +124,7 @@ public class ViewController {
 		 */
 		
 		return "myPage/MyPage";
+	
 	}
-	
-	
 	
 }

@@ -10,12 +10,12 @@
   <body>
     <div class="headerbody">
       <div class="headercontainer">
-        <img class="headerlogo" src="img/logo.png" alt="" />
+        <img class="headerlogo" src="/static/img/logo.png" alt="" />
         <a class="headertitle" href="${pageContext.request.contextPath}/index">Health Care System</a>
         <nav class="headerright">
           <% if (session.getAttribute("userId") == null) { %>
           <a class="headersignin" href="${pageContext.request.contextPath}/toLogin">로그인&nbsp;&nbsp;</a>
-          <a class="headersignup" href="${pageContext.request.contextPath}/toSingUp">회원가입&nbsp;&nbsp;</a>
+          <a class="headersignup" href="${pageContext.request.contextPath}/toSignUp">회원가입&nbsp;&nbsp;</a>
           <% } else { %>
           <a class="headersignup"><%= session.getAttribute("userId") %>님 사용 중&nbsp;&nbsp;</a>
           <a class="headersignup">로그아웃&nbsp;&nbsp;</a>

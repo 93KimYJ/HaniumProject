@@ -6,19 +6,19 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        // 루트 설정 클래스를 반환 (스프링 빈 설정)
+        // 猷⑦듃 �꽕�젙 �겢�옒�뒪瑜� 諛섑솚 (�뒪�봽留� 鍮� �꽕�젙)
         return null;
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        // DispatcherServlet 설정 클래스를 반환 (스프링 MVC 설정)
+        // DispatcherServlet �꽕�젙 �겢�옒�뒪瑜� 諛섑솚 (�뒪�봽留� MVC �꽕�젙)
         return new Class<?>[] { WebConfig.class };
     }
 
     @Override
     protected String[] getServletMappings() {
-        // DispatcherServlet의 매핑을 지정
+        // DispatcherServlet�쓽 留ㅽ븨�쓣 吏��젙
         return new String[] { "/" };
     }
 }
