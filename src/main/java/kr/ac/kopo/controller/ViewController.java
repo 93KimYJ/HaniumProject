@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.ac.kopo.dao.ExerciseMapper;
 import kr.ac.kopo.dao.UserMapper;
 import kr.ac.kopo.service.AccountService;
+import kr.ac.kopo.service.ExerciseDataService;
 import kr.ac.kopo.vo.ExerciseVO;
 import kr.ac.kopo.vo.UserVO;
 
@@ -28,6 +29,9 @@ public class ViewController {
 	
 	@Autowired
 	private ExerciseVO evo;
+	
+	@Autowired
+	private ExerciseDataService exerciseService;
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -78,12 +82,10 @@ public class ViewController {
 		evo.setUserId(uid);
 		evo.setType("dumbbel");
 		
-		evo2.setUserId(uid);
-		evo2.seteNo(17);
-		evo2.setCnt(5);
-		
+
 		Integer totalTry = exerciseMapper.select_allTime_exerciseTryCount_withUid(uid);
-		List<ExerciseVO> exRecodeList = exerciseMapper.select_exerciseRecode_withUid_andRange(evo2);
+		List<ExerciseVO> exRecodeList = exerciseService.getExerciseRecode(17, 5, uid);
+		
 		System.out.println(exRecodeList);
 		
 		model.addAttribute("totalTry", totalTry);
