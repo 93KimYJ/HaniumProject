@@ -1,9 +1,14 @@
 /**
  * 
  */
- $("#selectButton").click(function() {
+
+
+
+
+function selectType(type) {
+	 
 		
-		var type = $("#exerciseSelect").val();
+		//var type = $("#exerciseSelect").val();
 		
 		$.ajax({
 			url: "getExerciseCount",
@@ -63,4 +68,4 @@
             }
 		});
 
-	});
+	}

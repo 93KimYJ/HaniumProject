@@ -19,9 +19,6 @@ import kr.ac.kopo.vo.ExerciseVO;
 public class ViewApiController {
 	
 	@Autowired
-	private ExerciseVO evo;
-	
-	@Autowired
 	private AccountService accountService;
 	
 	@Autowired
@@ -36,7 +33,7 @@ public class ViewApiController {
 	
 	@GetMapping("/getExerciseCount")
 	public ResponseEntity<Map<String, Integer>> ajaxTest(@RequestParam  String type) {
-		
+		ExerciseVO evo = new ExerciseVO();
 		Map<String, Integer> responseMap = new HashMap<String, Integer>();
 		
 		evo.setType(type);

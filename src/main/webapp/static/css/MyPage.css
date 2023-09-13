@@ -1,0 +1,20 @@
+.sidemenu {
+	background-color: blue;
+	width: 250px;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.sidemenu input {
+	background: transparent;
+	border: none;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	margin-left: -5px;
+}
+
+.sidemenu ul li {
+  list-style-type: none;
+}

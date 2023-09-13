@@ -28,11 +28,16 @@
           </label>
           <div class="headermenu" id="menu">
             <ul>
-              <li><a>아령 운동</a></li>
-              <li><a>스쿼트</a></li>
-              <li><a>랭킹?</a></li>
-              <li><a>또 뭐 넣지</a></li>
               <li><a href="${pageContext.request.contextPath}/toMyPage">마이페이지</a></li>
+              <hr>
+              <li><a>운동 순위</a></li>
+              <hr>
+              <li><a>덤벨 운동정보</a></li>
+              <hr>
+              <li><a>팔굽혀펴기 운동정보</a></li>
+              <hr>
+              <li><a>스쿼트 운동정보</a></li>
+              <hr>
             </ul>
           </div>
         </nav>

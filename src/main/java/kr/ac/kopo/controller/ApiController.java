@@ -24,9 +24,6 @@ import kr.ac.kopo.vo.UserVO;
 public class ApiController {
 	
 	@Autowired
-	private UserVO uvo;
-	
-	@Autowired
 	private AccountService accountService;
 	
 	@Autowired
@@ -59,6 +56,7 @@ public class ApiController {
 	
 	@RequestMapping("/pyLogin")
 	public ResponseEntity<UserVO> pyLogin(@RequestBody UserVO vo) {
+		UserVO uvo = new UserVO();
 		
 		System.out.println(vo.getUserId() + " : "  + vo.getPassword());
 		boolean result = accountService.userLogin(vo.getUserId(), vo.getPassword());

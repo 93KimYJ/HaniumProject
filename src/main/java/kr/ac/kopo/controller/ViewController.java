@@ -25,12 +25,6 @@ public class ViewController {
 	private HttpSession session;
 	
 	@Autowired
-	private UserVO uvo;
-	
-	@Autowired
-	private ExerciseVO evo;
-	
-	@Autowired
 	private ExerciseDataService exerciseService;
 	
 	@Autowired
@@ -46,6 +40,7 @@ public class ViewController {
 	@RequestMapping("/index")
 	public String index(Model model) {
 		String uid = (String)session.getAttribute("uid");
+		ExerciseVO evo = new ExerciseVO();
 		uid = uid != null ? uid : "";
 		
 		evo.setType("dumbbel");
@@ -76,6 +71,7 @@ public class ViewController {
 	
 	@GetMapping("/toMyPage")
 	public String toMyPage(Model model) {
+		ExerciseVO evo = new ExerciseVO();
 		ExerciseVO evo2 = new ExerciseVO();
 		String uid = (String)session.getAttribute("uid");
 		
