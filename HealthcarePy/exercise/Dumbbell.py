@@ -3,7 +3,7 @@ import mediapipe as mp
 import numpy as np
 import requests
 import json
-import ApiMapping
+import ApiMapping as ApiMapping
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose

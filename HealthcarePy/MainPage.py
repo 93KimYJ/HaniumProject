@@ -1,6 +1,11 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from exercise import Dumbbell
 from exercise import PushUp
 from handTracking import Finger_counter
@@ -9,7 +14,7 @@ from PyQt5.QtGui import QPixmap
 
 
 # UI파일 연결
-form_class = uic.loadUiType("MainMenu.ui")[0]
+form_class = uic.loadUiType("ui/MainMenu.ui")[0]
 
 naxtPageFlag = 0
 
@@ -24,6 +29,8 @@ class WindowClass2(QDialog, form_class) :
 
         self.fingerCount.clicked.connect(self.fingerCountDef)
         self.startDumbbelBtn.clicked.connect(self.startDumbbelWithFinger)
+        self.logoutBtn.clicked.connect(self.logout)
+        self.exitBtn.clicked.connect(self.exit)
         #self.pushUpBtn.clicked.connect(self.startPushUpFuc)
 
 
@@ -55,6 +62,13 @@ class WindowClass2(QDialog, form_class) :
 
     # def startPushUpFuc(self):
     #     PushUp.start()
+
+    def logout(self):
+        print("로그아웃")
+        self.close()
+
+    def exit(self): 
+        exit()
 
 
 

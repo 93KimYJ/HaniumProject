@@ -1,13 +1,13 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyIndex import WindowClass2
+from MainPage import WindowClass2
 import requests
 import json
-import ApiMapping
+import ApiMapping as ApiMapping
 
 # UI파일 연결
-form_class = uic.loadUiType("login.ui")[0]
+form_class = uic.loadUiType("ui/login.ui")[0]
 
 # 화면을 띄우는데 사용되는 Class 선언
 class WindowClass(QDialog, form_class) :
@@ -44,7 +44,8 @@ class WindowClass(QDialog, form_class) :
                 print("로그인 성공")
                 self.hide()
                 self.mainPage = WindowClass2(id)
-                self.mainPage.exec()
+                a = self.mainPage.exec()
+                print(a)
                 self.show()
             else:
                 print("로그인 실패")
@@ -52,10 +53,6 @@ class WindowClass(QDialog, form_class) :
             # 요청 실패
             print('데이터 전송 실패')
 
-
-        
-
-    
 
 if __name__ == "__main__" :
     app = QApplication(sys.argv) 

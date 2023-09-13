@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 import requests
 import json
-import ApiMapping
+import ApiMapping as ApiMapping
 
 # For webcam input:
 def startFingerCount():

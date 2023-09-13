@@ -87,11 +87,39 @@ font-weight:bold;</string>
     <string>Health Care System</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="logoutBtn">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>450</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>로그아웃</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitBtn">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>450</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>종료</string>
+   </property>
+  </widget>
   <zorder>label_2</zorder>
   <zorder>startDumbbelBtn</zorder>
   <zorder>pushUpBtn</zorder>
   <zorder>fingerCount</zorder>
   <zorder>label_3</zorder>
+  <zorder>logoutBtn</zorder>
+  <zorder>exitBtn</zorder>
  </widget>
  <resources/>
  <connections/>
