@@ -11,14 +11,27 @@ import kr.ac.kopo.vo.ExerciseVO;
 @Service
 public class ExerciseDataService {
 	
-	@Autowired
-	private ExerciseVO evo;
+	private long MAX_LONG = 9223372036854775807L;
 	
 	@Autowired
 	private ExerciseMapper exerciseMapper;
 	
+	/**
+	 * 운동기록의 시작 번호와 가져올 번호 수를 받아서 레코드를 가져옴
+	 * ex) 20, 5 -> 20, 19, 18, 17, 16
+	 * 운동기록 시작에 -1 쓰면 가장 최신값부터 가져옴
+	 * @param getListStart
+	 * @param listLen
+	 * @param uid
+	 * @return
+	 */
 	public List<ExerciseVO> getExerciseRecode(long getListStart, int listLen, String uid) {
+		ExerciseVO evo = new ExerciseVO();
 		List<ExerciseVO> result = null;
+		
+		if(getListStart < 0) {
+			getListStart = MAX_LONG;
+		}
 		
 		evo.seteNo(getListStart);
 		evo.setCnt(listLen);

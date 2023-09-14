@@ -80,7 +80,7 @@ public class ViewController {
 		
 
 		Integer totalTry = exerciseMapper.select_allTime_exerciseTryCount_withUid(uid);
-		List<ExerciseVO> exRecodeList = exerciseService.getExerciseRecode(17, 5, uid);
+		List<ExerciseVO> exRecodeList = exerciseService.getExerciseRecode(-1, 5, uid);
 		
 		System.out.println(exRecodeList);
 		

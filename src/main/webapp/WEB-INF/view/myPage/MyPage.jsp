@@ -22,11 +22,11 @@
 		<ul>
 
 			<hr>
-			<li><input type="button" onclick="selectType('pushUp')"  value="팔굽혀펴기"></li>
+			<li><input type="button" onclick="selectType('pushUp')"  value="팔굽혀펴기"/></li>
 			<hr>
-			<li><input type="button" onclick="selectType('dumbbel')" value="덤벨"></li>
+			<li><input type="button" onclick="selectType('dumbbel')" value="덤벨"/></li>
 			<hr>
-			<li><input type="button" onclick="selectType('squat')" value="스쿼드"></li>
+			<li><input type="button" onclick="selectType('squat')" value="스쿼드"/></li>
 
 
 			<hr>
@@ -34,17 +34,35 @@
 		</ul>
 	</div>
 	
-	<h3>운동기록</h3>
+	<hr>
+	<h3>운동기록 (조금 손보면 나타내는 갯수 선택 가능)</h3>
 	<c:forEach var="vo" items="${ exRecodeList }">
-		${vo.toString() } <br>
+		<%-- ${ vo.toString() } --%> <br>
+		
+		식별번호: ${ vo.eNo }
+		
+		uid: ${ vo.userId }
+		
+		운동종류: 
+		<c:if test="${ vo.type eq 'dumbbel' }">
+			덤벨
+		</c:if>
+		<c:if test="${ vo.type eq 'pushUp' }">
+			팔굽혀펴기
+		</c:if>
+		<c:if test="${ vo.type eq 'squat' }">
+			스쿼트
+		</c:if>
+		
+		횟수: ${ vo.cnt }
+		
+		종료시간: ${ vo.endTime }
+		
+		
+		
+		
 	</c:forEach>
-	
-<%-- 	<form method="get" action="${pageContext.request.contextPath}/getExerciseCount"></form> --%>
-	<button id="selectButton">선택</button>
-	<select id="exerciseSelect">
-		<option value="dumbbel">덤벨</option>
-		<option value="pushUp">팔굽혀펴기</option>
-	</select>
+	<hr>
 	
 	<div id="searchExerciseDataDiv" style="display:none">
 	
@@ -52,26 +70,31 @@
 			<h4>오늘</h4>
 			<p class="searchExData" id="todayTry"></p>
 			<p class="searchExData" id="todayCount"></p>
+			<p class="searchExData" id="todayAverageCount"></p>
 		</div>
 		<div id="weekInfo">
 			<h4>이번 주</h4>
 			<p class="searchExData" id="weekTry"></p>
 			<p class="searchExData" id="weekCount"></p>
+			<p class="searchExData" id="weekAverageCount"></p>
 		</div>
 		<div id="monthInfo">
 			<h4>이번 달</h4>
 			<p class="searchExData" id="monthTry"></p>
 			<p class="searchExData" id="monthCount"></p>
+			<p class="searchExData" id="monthAverageCount"></p>
 		</div>
 		<div id="yearInfo">
 			<h4>올 해</h4>
 			<p class="searchExData" id="yearTry"></p>
 			<p class="searchExData" id="yearCount"></p>
+			<p class="searchExData" id="yearAverageCount"></p>
 		</div>
 		<div id="allTimeInfo">
 			<h4>총 합</h4>
 			<p class="searchExData" id="allTimeTry"></p>
 			<p class="searchExData" id="allTimeCount"></p>
+			<p class="searchExData" id="allTimeAverageCount"></p>
 		</div>
 	
 	</div>
