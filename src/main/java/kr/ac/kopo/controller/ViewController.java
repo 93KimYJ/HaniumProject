@@ -48,12 +48,9 @@ public class ViewController {
 		
 		List<ExerciseVO> evoList = exerciseMapper.select_ExerciseDataTest(uid);
 		Integer todayCount = exerciseMapper.select_today_exerciseCount_withUid_andType(evo);
-		List<ExerciseVO> topList = exerciseMapper.select_allTime_topFiveExerciseCount_withType("dumbbel");
 		
 		model.addAttribute("exList" , evoList);
 		model.addAttribute("todayCount", todayCount);
-		model.addAttribute("topFiveList", topList);
-		System.out.println(topList);
 		
 		return "Index";
 	}
@@ -102,6 +99,12 @@ public class ViewController {
 		return "myPage/MyPage";
 	}
 	
+	@GetMapping("/toExerciseDashboard")
+	public String toExerciseDashboard(Model model) {
+		ExerciseVO evo = new ExerciseVO();
+		
+		return "exerciseDashboard/ExerciseDashboard";
+	}
 	
 	
 }

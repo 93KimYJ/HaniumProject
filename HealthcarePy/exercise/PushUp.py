@@ -95,8 +95,10 @@ def start():
                                     )               
             
             cv2.imshow('Mediapipe Feed', image)
-
-            if cv2.waitKey(10) & 0xFF == ord('q'):
+            # 동작으로 종료
+            leftHand = landmarks[mp_pose.PoseLandmark.RIGHT_INDEX.value].x
+            rightHand = landmarks[mp_pose.PoseLandmark.LEFT_INDEX.value].x
+            if cv2.waitKey(10) & 0xFF == ord('q') or leftHand > rightHand:
                 user_data = {
                     'userId': 'idid',
                     'type' : 'pushUp',
@@ -115,6 +117,9 @@ def start():
                     # 요청 실패
                     print('데이터 전송 실패')
                 break
+
+
+
 
         cap.release()
         cv2.destroyAllWindows()

@@ -137,6 +137,14 @@ public interface ExerciseMapper {
 			+ "WHERE rownum <= #{cnt} ")
 	List<ExerciseVO> select_exerciseRecode_withUid_andRange(ExerciseVO vo);
 	
+	@Select("SELECT * FROM ( "
+			+ "	SELECT * FROM exercise "
+			+ "	WHERE user_id = #{userId} AND E_NO <= #{eNo} AND TYPE = #{type}"
+			+ "	ORDER BY END_TIME DESC "
+			+ "	) "
+			+ "WHERE rownum <= #{cnt} ")
+	List<ExerciseVO> select_exerciseRecode_withUid_andType_andRange(ExerciseVO vo);
+	
 	
 	
 	@Select("SELECT COALESCE(count(user_id), 0) FROM EXERCISE "
@@ -144,9 +152,16 @@ public interface ExerciseMapper {
 	Integer select_allTime_exerciseTryCount_withUid(@Param("userId")String userId);
 	
 	
-	
-	@Select("SELECT USER_ID, COALESCE(MAX(CNT), 0 ) AS CNT FROM EXERCISE "
-			+ "WHERE TYPE= #{type} GROUP BY USER_ID ORDER BY CNT DESC ")
-	List<ExerciseVO> select_allTime_topFiveExerciseCount_withType(@Param("type")String type);
+	/**
+	 * 각 유저의 최고기록 top x 가져오기
+	 * @param type
+	 * @return
+	 */
+	@Select("SELECT * FROM ( "
+			+ "SELECT USER_ID, COALESCE(MAX(CNT), 0 ) AS CNT FROM EXERCISE "
+			+ "WHERE TYPE= #{type} GROUP BY USER_ID ORDER BY CNT DESC "
+			+ ") "
+			+ "WHERE rownum <= #{cnt} ")
+	List<ExerciseVO> select_allTime_bestExerciseRecode_withType_andRownum(ExerciseVO vo);
 	
 }

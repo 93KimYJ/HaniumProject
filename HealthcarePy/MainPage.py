@@ -31,8 +31,7 @@ class WindowClass2(QDialog, form_class) :
         self.startDumbbelBtn.clicked.connect(self.startDumbbelWithFinger)
         self.logoutBtn.clicked.connect(self.logout)
         self.exitBtn.clicked.connect(self.exit)
-        #self.pushUpBtn.clicked.connect(self.startPushUpFuc)
-
+        self.pushUpBtn.clicked.connect(self.startPushUpFuc)
 
 	# 작동시킬 함수들 작성
     ''' ex)
@@ -58,10 +57,10 @@ class WindowClass2(QDialog, form_class) :
     def startDumbbelWithFinger(self):
         print("dumbbell")
         Dumbbell.start(self.uid)
-        self.fingerCountDef()
+        #self.fingerCountDef()
 
-    # def startPushUpFuc(self):
-    #     PushUp.start()
+    def startPushUpFuc(self):
+         PushUp.start()
 
     def logout(self):
         print("로그아웃")

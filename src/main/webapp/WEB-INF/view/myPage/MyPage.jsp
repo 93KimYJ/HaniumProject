@@ -66,6 +66,10 @@
 	
 	<div id="searchExerciseDataDiv" style="display:none">
 	
+		<h3>선택한 운동의 최근 기록</h3>
+		<div class="exTypeRecode" id="selectExerciseRecode">
+		</div>
+	
 		<div id="toDayInfo">
 			<h4>오늘</h4>
 			<p class="searchExData" id="todayTry"></p>
@@ -98,6 +102,9 @@
 		</div>
 	
 	</div>
+	<hr>
+	<div class="exTypeRecode" id="selectExerciseRecode">
+		</div>
 	
 	<script src="/static/js/ajax.js"></script> <!-- webapp/static 아래에 있음 -->
 	<script type="text/javascript">

@@ -11,9 +11,6 @@ import kr.ac.kopo.vo.UserVO;
 public class AccountService {
 	
 	@Autowired
-	private UserVO vo;
-	
-	@Autowired
 	private UserMapper userMapper;
 	
 	AccountService() {
@@ -21,6 +18,7 @@ public class AccountService {
 	}
 	
 	public boolean userLogin(String id, String pw) {
+		UserVO vo = new UserVO();
 		boolean result = false;
 		
 		vo.setUserId(id);

@@ -41,4 +41,32 @@ public class ExerciseDataService {
 		
 		return result;
 	}
+	
+	public List<ExerciseVO> getExerciseRecode(long getListStart, int listLen, String uid, String type) {
+		ExerciseVO evo = new ExerciseVO();
+		List<ExerciseVO> result = null;
+		
+		if(getListStart < 0) {
+			getListStart = MAX_LONG;
+		}
+		
+		evo.seteNo(getListStart);
+		evo.setCnt(listLen);
+		evo.setUserId(uid);
+		evo.setType(type);
+		
+		result = exerciseMapper.select_exerciseRecode_withUid_andType_andRange(evo);
+		
+		return result;
+	}
+	
+	public List<ExerciseVO> getBestExerciseRecodeWithType(String type, int num) {
+		ExerciseVO vo = new ExerciseVO();
+		vo.setType(type);
+		vo.setCnt(num);
+		
+		List<ExerciseVO> bestList = exerciseMapper.select_allTime_bestExerciseRecode_withType_andRownum(vo);
+		
+		return bestList;
+	}
 }

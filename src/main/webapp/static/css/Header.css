@@ -101,7 +101,7 @@ input[id="headermenuicon"]:checked + label span:nth-child(3) {
 .headermenu {
   position: fixed;
   top: 100px;
-  right: -350px; /* ����: ���� ��ġ ���� */
+  right: -350px; /* ����: ���� ��ġ ���� */
   width: 350px;
   z-index: 1;
   transition: all 0.35s;
@@ -120,4 +120,17 @@ input[id="headermenuicon"]:checked + label + div[class="headermenu"] {
 
 a {
 	text-decoration: none;
+}
+
+
+
+/* mainContainer css*/
+
+#mainContainer {
+	position: absolute;
+    left: 50%; /* 좌측 위치를 화면 가로 중앙으로 이동 */
+    transform: translateX(-50%); /* 요소를 가로로 중앙으로 정렬 */
+    width: 1000px; /* 요소의 너비 설정 */
+    background-color: #f0f0f0; /* 요소의 배경색 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일을 지정 */
 }

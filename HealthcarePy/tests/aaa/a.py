@@ -1,7 +1,4 @@
+import time
 
-import sys
-from ..bbb import b
-
-print("a")
-bn = b
-bn.printB()
+for i in range(5):
+    print('*' * (i * 2 - 1))
