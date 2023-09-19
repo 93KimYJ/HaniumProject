@@ -55,6 +55,8 @@ public class ExerciseDataService {
 		evo.setUserId(uid);
 		evo.setType(type);
 		
+		System.out.println("오류나면 아이디 세션에 값 없어서임");
+		
 		result = exerciseMapper.select_exerciseRecode_withUid_andType_andRange(evo);
 		
 		return result;

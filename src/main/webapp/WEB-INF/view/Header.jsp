@@ -32,11 +32,7 @@
               <hr>
               <li><a href="${pageContext.request.contextPath}/toExerciseDashboard">운동 대시보드</a></li>
               <hr>
-              <li><a>운동 순위</a></li>
-              <hr>
-              <li><a>팔굽혀펴기 운동정보</a></li>
-              <hr>
-              <li><a>스쿼트 운동정보</a></li>
+              <li><a>운동 정보</a></li>
               <hr>
             </ul>
           </div>

@@ -1,4 +1,4 @@
-import time
-
-for i in range(5):
-    print('*' * (i * 2 - 1))
+def f(n) :
+  return lambda a:a*n
+k=f(3)
+print(k(10))

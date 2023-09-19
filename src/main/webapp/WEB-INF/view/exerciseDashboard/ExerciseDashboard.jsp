@@ -6,37 +6,59 @@
 <head>
 <meta charset="UTF-8">
 <title>ExerciseDashboard</title>
-<style>
-	#mainContainer {
-		display: grid;
-		grid-template-columns: 200px 1fr;
-		grid-template-rows: 200px 50px; 
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/static/css/ExerciseDashboard.css" />
 </head>
 <body>
 	<c:import url="/WEB-INF/view/Header.jsp" />
 	
-	<h1>운동 대쉬보드</h1>
+	
 	<div id="mainContainer">
+		
+		<!-- 사이드 메뉴 -->
 		
 		<div class="sidemenu">
 			<ul>
+				<li><input type="button" onclick="toDashboard()"  value="전체통계"/></li>
 				<li><input type="button" onclick="selectType('pushUp')"  value="팔굽혀펴기"/></li>
 				<li><input type="button" onclick="selectType('dumbbel')" value="덤벨"/></li>
 				<li><input type="button" onclick="selectType('squat')" value="스쿼드"/></li>
 			</ul>
 		</div>
 		
-		<div class="contain">
-			<h3>운동 기록</h3>
+		<!-- 정보 표시창 -->
+		
+		<div class="dashboardContainer">
+			<h1>운동 대시보드</h1>
+			
+			<!-- 처음 정보 표시 -->
+			
+			<div id="statContainer">
+				<div id="mostTryExerciseType" class="statBox">
+					가장 많이 한 운동
+				</div>
+				<div id="myBastRecode" class="statBox">
+					최고기록
+				</div>
+				<div id="totalExerciseCount" class="statBox">
+					총 운동 횟수
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<!-- 타입 선택시 보여지는 것들 -->
+			
+			<h3 class="exTypeRecode" style="display:none">운동 기록</h3>
 			<div class="exTypeRecode" id="selectExerciseRecode">
 			
 			</div>
 			
 			<hr>
 			
-			<h3>운동 횟수</h3>
+			<h3 class="exTypeRecode"  style="display:none">운동 횟수</h3>
 			<div id="searchExerciseDataDiv" style="display:none">
 			
 				<div id="toDayInfo">
@@ -75,6 +97,18 @@
 		</div>
 	
 	</div> <!-- mainContainer -->
+	
+	<!-- 숨겨진 폼 -->
+	<form id="toDashboardForm" method="get" action="${pageContext.request.contextPath}/toExerciseDashboard">
+		<input style="display: none;" type="submit" value="기본화면">
+	</form>
+	
+	<script>
+		function toDashboard() {
+			const myForm = document.getElementById('toDashboardForm');
+			myForm.submit();
+		}
+	</script>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="/static/js/ajax.js"></script> <!-- webapp/static 아래에 있음 -->

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#mainContainer {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	/*grid-template-rows: 200px 50px; */
+}
+
+.statBox {
+	display: inline-block;
+	width: 250px;
+	height: 200px;
+	background-color: rgb(226, 230, 233);
+	border-radius: 5px;
+}

@@ -84,17 +84,6 @@ public class ViewController {
 		model.addAttribute("totalTry", totalTry);
 		model.addAttribute("exRecodeList", exRecodeList);
 		
-		/*
-		 기능
-		 
-		 유저 운동 통계
-		 	기본 보여주기
-		 		오늘, 이번주, 이번달 가장 많이 한 운동
-		 			세트, 카운트
-		 	선택해서 상세 보기
-		 		시간별 세트, 카운트
-		 
-		 */
 		
 		return "myPage/MyPage";
 	}
@@ -106,5 +95,15 @@ public class ViewController {
 		return "exerciseDashboard/ExerciseDashboard";
 	}
 	
+	@GetMapping("/toAccountInfoUpdate")
+	public String toAccountInfoUpdate(Model model) {
+		String uid = (String)session.getAttribute("uid");
+		
+		UserVO userInfo = userMapper.select_userInfo_withId(uid);
+		
+		model.addAttribute("userInfo", userInfo);
+		
+		return "myPage/AccountInfoUpdate";
+	}
 	
 }

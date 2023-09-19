@@ -10,6 +10,8 @@ public interface UserMapper {
 	
 	// 작명규칙
 	// 행위_기간_목표_with조건 (id는 기본갑)
+	@Select("SELECT * FROM HC_USER WHERE USER_ID = #{id}")
+	UserVO select_userInfo_withId(String id);
 
 	@Select("SELECT EMAIL FROM HC_USER WHERE USER_ID = #{id}")
 	UserVO select_userEmail_withId(String id);

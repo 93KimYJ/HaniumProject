@@ -17,6 +17,24 @@ function getAverageOrZero(dataMap, range) {
     return averageCount
 }
 
+/*function getDailyStatsWithAjax(type) {
+	let result = null;
+	
+	$.ajax({
+		url: "getExerciseCount",
+		type: "GET",
+		dataType: "json",
+		data: {type : type},
+		success: function(data) {
+			result = data;
+		},
+		error: function() {
+            alert("데이터를 가져오는 데 실패했습니다.");
+        }
+	});
+	return result;
+}*/
+
 // 이거 분리하는게 좋음
 function selectType(type) {
 
