@@ -18,6 +18,8 @@ class WindowClass(QDialog, form_class) :
         # 시그널
         self.loginBtn.clicked.connect(self.executeLogin)
 
+
+
     # 행동
     def executeLogin(self):
 

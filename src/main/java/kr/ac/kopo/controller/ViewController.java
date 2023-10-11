@@ -90,7 +90,15 @@ public class ViewController {
 	
 	@GetMapping("/toExerciseDashboard")
 	public String toExerciseDashboard(Model model) {
-		ExerciseVO evo = new ExerciseVO();
+		String uid = (String)session.getAttribute("uid");
+		
+		List<ExerciseVO> recode  = exerciseService.getExerciseRecode(-1, 5, uid);
+		ExerciseVO mostExercise = exerciseMapper.select_allTime_mostExercise_withUid(uid);
+		int totalTryCount = exerciseMapper.select_allTime_exerciseTryCount_withUid(uid);
+		
+		model.addAttribute("recode", recode);
+		model.addAttribute("mostExercise", mostExercise);
+		model.addAttribute("totalTryCount", totalTryCount);
 		
 		return "exerciseDashboard/ExerciseDashboard";
 	}

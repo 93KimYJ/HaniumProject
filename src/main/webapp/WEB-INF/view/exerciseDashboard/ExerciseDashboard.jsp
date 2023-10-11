@@ -32,15 +32,23 @@
 			
 			<!-- 처음 정보 표시 -->
 			
+			${mostExercise}
+			
 			<div id="statContainer">
-				<div id="mostTryExerciseType" class="statBox">
-					가장 많이 한 운동
+				<div>
+					<h3>최근 운동기록</h3>
+					<c:forEach var="vo" items="${recode}">
+						${vo}<br>
+					</c:forEach>
 				</div>
-				<div id="myBastRecode" class="statBox">
-					최고기록
+				<div id="mostTryExerciseType" class="statBox">
+					<h4>가장 많이 한 운동</h4>
+					${mostExercise.type }<br>
+					시도횟수 : ${mostExercise.trycnt }
 				</div>
 				<div id="totalExerciseCount" class="statBox">
 					총 운동 횟수
+					${totalTryCount }
 				</div>
 			</div>
 			

@@ -126,6 +126,7 @@ public interface ExerciseMapper {
 	
 	/**
 	 * 운동 데이터 레코드 가져오기
+	 * eNo에서부터 cnt개 가져옴
 	 * @param userId
 	 * @return
 	 */
@@ -163,5 +164,21 @@ public interface ExerciseMapper {
 			+ ") "
 			+ "WHERE rownum <= #{cnt} ")
 	List<ExerciseVO> select_allTime_bestExerciseRecode_withType_andRownum(ExerciseVO vo);
+	
+	
+	// 유저의 가장 많이 한 운동
+	@Select("SELECT * FROM ( "
+			+ "	SELECT user_id, TYPE, count(cnt) AS trycnt, sum(cnt) AS cnt FROM exercise "
+			+ "	GROUP BY user_id, TYPE "
+			+ "	ORDER BY cnt DESC ) "
+			+ "WHERE USER_ID = 'idid' AND rownum <= 1 ")
+	ExerciseVO select_allTime_mostExercise_withUid(@Param("userId")String userId);
+	
+	
+	
+	
+	
+	
+	
 	
 }

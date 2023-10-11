@@ -115,13 +115,14 @@ def startFingerCount():
             
             
             # 중단
-            if (timeCnt > 1.5 and fingerCount in [1, 2]):
-
-                
+            if (timeCnt > 1.5 and fingerCount in [1, 2, 3, 5]):
 
                 fingerData = {
                     'cnt': fingerCount,
                 }
+
+                if fingerCount == 5:
+                    exit()
 
                 url = ApiMapping.mappingData.get("fingerCnt")
                 headers = {'Content-Type': 'application/json'}
@@ -151,7 +152,7 @@ def startFingerCount():
             cv2.putText(image, "spread your fingers to select", (50, 320),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
             
-            cv2.putText(image, "1: dumbbell, 2: menu", (50, 340),
+            cv2.putText(image, "1: dumbbell, 2: pushUp, 3: menu", (50, 340),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
 
             # Display image

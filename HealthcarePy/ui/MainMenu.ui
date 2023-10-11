@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>dumbbel</string>
+    <string>dumbbell</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushUpBtn">

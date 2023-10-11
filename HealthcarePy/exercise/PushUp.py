@@ -24,7 +24,7 @@ def calculate_angle(a,b,c):
     return angle 
 
 
-def start():
+def start(uid):
     # Pushup counter variables
     counter = 0 
     position = None
@@ -95,12 +95,22 @@ def start():
                                     )               
             
             cv2.imshow('Mediapipe Feed', image)
+
+
             # 동작으로 종료
-            leftHand = landmarks[mp_pose.PoseLandmark.RIGHT_INDEX.value].x
-            rightHand = landmarks[mp_pose.PoseLandmark.LEFT_INDEX.value].x
-            if cv2.waitKey(10) & 0xFF == ord('q') or leftHand > rightHand:
+            leftHand = landmarks[mp_pose.PoseLandmark.LEFT_INDEX.value].x
+            leftHandHight = landmarks[mp_pose.PoseLandmark.LEFT_INDEX.value].y
+            rightHand = landmarks[mp_pose.PoseLandmark.RIGHT_INDEX.value].x
+            rightHandHight = landmarks[mp_pose.PoseLandmark.RIGHT_INDEX.value].y
+
+            leftElbow = landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y
+            rightElbow = landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y
+
+            isMakeX = leftHand < rightHand and leftHandHight < rightElbow and rightHandHight < leftElbow 
+
+            if cv2.waitKey(10) & 0xFF == ord('q') or isMakeX:
                 user_data = {
-                    'userId': 'idid',
+                    'userId': uid,
                     'type' : 'pushUp',
                     'cnt': counter,
 

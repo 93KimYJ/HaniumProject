@@ -9,6 +9,7 @@ public class ExerciseVO {
 	private String userId;
 	private String type;
 	private int cnt;
+	private int trycnt;
 	private int avgCnt;
 	private int maxCnt;
 	private String endTime;
@@ -55,11 +56,20 @@ public class ExerciseVO {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	public int gettrycnt() {
+		return trycnt;
+	}
+	public void settrycnt(int trycnt) {
+		this.trycnt = trycnt;
+	}
+	
+	
+	
 	
 	@Override
 	public String toString() {
-		return "ExerciseVO [eNo=" + eNo + ", userId=" + userId + ", type=" + type + ", cnt=" + cnt + ", avgCnt=" + avgCnt
-				+ ", maxCnt=" + maxCnt + ", endTime=" + endTime + "]";
+		return "ExerciseVO [eNo=" + eNo + ", userId=" + userId + ", type=" + type + ", cnt=" + cnt + ", trycnt="
+				+ trycnt + ", avgCnt=" + avgCnt + ", maxCnt=" + maxCnt + ", endTime=" + endTime + "]";
 	}
 	
 	

@@ -53,14 +53,21 @@ class WindowClass2(QDialog, form_class) :
     
         if naxtPageFlag == 1:
             self.startDumbbelWithFinger()
+        if naxtPageFlag == 2:
+            self.startPushUpWithFinger()
 
     def startDumbbelWithFinger(self):
         print("dumbbell")
         Dumbbell.start(self.uid)
-        #self.fingerCountDef()
+        self.fingerCountDef()
+
+    def startPushUpWithFinger(self):
+        print("pushUp")
+        PushUp.start(self.uid)
+        self.fingerCountDef()
 
     def startPushUpFuc(self):
-         PushUp.start()
+         PushUp.start(self.uid)
 
     def logout(self):
         print("로그아웃")
