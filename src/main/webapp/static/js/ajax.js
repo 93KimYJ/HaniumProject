@@ -92,12 +92,47 @@ function getExerciseRecodeWithAjax(type) {
 	});
 }
 
+function getUsersBestRecodeWithAjax(type) {
+	$.ajax({
+		url: "getExerciseRecode",
+		type: "GET",
+		dataType: "json",
+		data: {type : type},
+		success: function(data) {
+
+            // 서버에서 받은 JSON 데이터를 사용하여 컴포넌트 변경
+            $(".exTypeRecode").empty(); // 컴포넌트 초기화
+           	
+            const dataMap = new Map(Object.entries(data));
+            
+            let recode = dataMap.get("exerciseRecode");
+            for(let i = 0; i < 5; ++i) {	
+				let vo = recode[i];
+				console.log(vo);
+				
+				// 임시값임. 화면 스타일에 따라 변경할것
+				$("#selectExerciseRecode").append("<p>" + " " 
+				 + "운동횟수: " + vo.cnt + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 종료시간: " + vo.endTime + "</p>");
+
+			}
+
+            // 화면에 표시
+			$("#searchExerciseDataDiv").css("display", "block")
+        },
+        error: function() {
+            alert("데이터를 가져오는 데 실패했습니다.");
+        }
+	});
+}
+
 // 운동 매뉴 선택시 실행되는 함수 1
 function selectType(type) {
 
 	getExerciseCountWithAjax(type);
 	
 	getExerciseRecodeWithAjax(type);
+	
+	//getUsersBestRecodeWithAjax(type);
 	
 	$("#statContainer").css("display", "none")
 	

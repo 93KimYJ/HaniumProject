@@ -158,11 +158,15 @@ public interface ExerciseMapper {
 	 * @param type
 	 * @return
 	 */
-	@Select("SELECT * FROM ( "
-			+ "SELECT USER_ID, COALESCE(MAX(CNT), 0 ) AS CNT FROM EXERCISE "
-			+ "WHERE TYPE= #{type} GROUP BY USER_ID ORDER BY CNT DESC "
-			+ ") "
-			+ "WHERE rownum <= #{cnt} ")
+	/*
+	 * @Select("SELECT * FROM ( " +
+	 * "SELECT USER_ID, COALESCE(MAX(CNT), 0 ) AS CNT FROM EXERCISE " +
+	 * "WHERE TYPE= #{type} GROUP BY USER_ID ORDER BY CNT DESC " + ") " +
+	 * "WHERE rownum <= #{cnt} ") List<ExerciseVO>
+	 * select_allTime_bestExerciseRecode_withType_andRownum(ExerciseVO vo);
+	 */
+	@Select("SSELECT * FROM EX_BEST_CNT "
+			+ "WHERE TYPE = #{type} AND rownum < #{cnt} ")
 	List<ExerciseVO> select_allTime_bestExerciseRecode_withType_andRownum(ExerciseVO vo);
 	
 	

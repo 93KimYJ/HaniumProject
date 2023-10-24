@@ -18,10 +18,10 @@
 		
 		<div class="sidemenu">
 			<ul>
-				<li><input type="button" onclick="toDashboard()"  value="전체통계"/></li>
-				<li><input type="button" onclick="selectType('pushUp')"  value="팔굽혀펴기"/></li>
-				<li><input type="button" onclick="selectType('dumbbel')" value="덤벨"/></li>
-				<li><input type="button" onclick="selectType('squat')" value="스쿼드"/></li>
+				<li><input type="button" class="button" id="all" onclick="toDashboard()"  value="전체통계"/></li>
+				<li><input type="button" class="button" onclick="selectType('pushUp')"  value="팔굽혀펴기"/></li>
+				<li><input type="button" class="button" onclick="selectType('dumbbel')" value="덤벨"/></li>
+				<li><input type="button" class="button" onclick="selectType('squat')" value="스쿼드"/></li>
 			</ul>
 		</div>
 		
@@ -32,25 +32,29 @@
 			
 			<!-- 처음 정보 표시 -->
 			
-			${mostExercise}
+			
 			
 			<div id="statContainer">
-				<div>
-					<h3>최근 운동기록</h3>
-					<c:forEach var="vo" items="${recode}">
-						${vo}<br>
-					</c:forEach>
-				</div>
-				<div id="mostTryExerciseType" class="statBox">
-					<h4>가장 많이 한 운동</h4>
-					${mostExercise.type }<br>
-					시도횟수 : ${mostExercise.trycnt }
-				</div>
-				<div id="totalExerciseCount" class="statBox">
-					총 운동 횟수
-					${totalTryCount }
-				</div>
-			</div>
+    <div class="statBox2">
+        <h3>최근 운동기록</h3>
+        <c:forEach var="vo" items="${recode}">
+            ${vo}<br>
+        </c:forEach>
+    </div>
+
+    <div id="mostTryExerciseType" class="statBox">
+        <h4>가장 많이 한 운동</h4>
+        <a>${mostExercise.type }<br><br>
+        시도횟수 : ${mostExercise.trycnt }</a>
+    </div>
+
+    <div id="totalExerciseCount" class="statBox">
+        <h4>총 운동 횟수</h4>
+        <a>총 ${totalTryCount } 회</a>
+    </div>
+</div>
+
+
 			
 			
 			
@@ -60,12 +64,10 @@
 			<!-- 타입 선택시 보여지는 것들 -->
 			
 			<h3 class="exTypeRecode" style="display:none">운동 기록</h3>
-			<div class="exTypeRecode" id="selectExerciseRecode">
-			
-			</div>
+			<div class="exTypeRecode" id="selectExerciseRecode"></div>
+			<div class="exTypeRecode" id="usersBestRecode"></div>
 			
 			<hr>
-			
 			<h3 class="exTypeRecode"  style="display:none">운동 횟수</h3>
 			<div id="searchExerciseDataDiv" style="display:none">
 			

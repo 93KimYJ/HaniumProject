@@ -71,4 +71,8 @@ public class ExerciseDataService {
 		
 		return bestList;
 	}
+	
+	public List<ExerciseVO> getUsersBestRecodeWithType(String type, int num) {
+		return null;
+	}
 }

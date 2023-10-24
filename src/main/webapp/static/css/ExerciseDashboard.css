@@ -6,10 +6,63 @@
 	/*grid-template-rows: 200px 50px; */
 }
 
+#statContainer {
+	text-align: center;
+}
+
+.statBox2 {
+	display: inline-block;
+	margin: 10px;
+}
+
+.statBox {
+	display: inline-block;
+	margin: 10px;
+	vertical-align: top;
+}
+
 .statBox {
 	display: inline-block;
 	width: 250px;
 	height: 200px;
 	background-color: rgb(226, 230, 233);
 	border-radius: 5px;
+}
+
+#all {
+	margin-top: 80px;
+}
+
+.button {
+	width: 100px;
+	height: 30px;
+	margin-bottom: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: rgba(137, 108, 233);
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.sidemenu > ul {
+	list-style: none;
+}
+
+.exTypeRecode {
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+#mostTryExerciseType > a {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#totalExerciseCount {
+	font-size: 15px;
+	font-weight: bold;
 }

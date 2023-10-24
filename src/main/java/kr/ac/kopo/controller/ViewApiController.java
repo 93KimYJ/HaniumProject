@@ -105,4 +105,13 @@ public class ViewApiController {
 		
 		return ResponseEntity.ok(responseMap);
 	}
+	
+	@GetMapping("/getUsersBestRecode")
+	public ResponseEntity<Map<String, Object>> getUsersBestRecode(@RequestParam  String type) {
+		List<ExerciseVO> exerciseRecode = exerciseService.getBestExerciseRecodeWithType(type, 5);
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		responseMap.put("exerciseRecode", exerciseRecode);
+		
+		return ResponseEntity.ok(responseMap);
+	}
 }
